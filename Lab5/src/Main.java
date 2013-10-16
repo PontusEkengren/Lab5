@@ -23,7 +23,11 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(500, 600));
 		frame.setVisible(true);
+<<<<<<< HEAD
 		////TESTGITT
 		///Removed by Kev
+=======
+
+>>>>>>> cf68e6b82c94db4063ffd51822bcd703a982c3dd
 	}
 }

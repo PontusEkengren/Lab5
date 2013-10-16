@@ -1,20 +1,21 @@
-package controller;
+package model;
 
 import java.util.*;
 
 public class Memory {
 	
-	- Users : ArrayList<User>
-	- cards : ArrayList<Card>
-	- time : Timer
-	- turns : int
-	- score : int
+	private ArrayList<User> users = new ArrayList<User>();
+	private ArrayList<Card> cards = new ArrayList<Card>();
+	
+
 	public Memory() {
 		reset();
 	}
 	
 	public void reset() {
 	//Reset everything but the score
+
+		users.add(null);
 	}
 	
 	public void turnCard() {

@@ -1,10 +1,7 @@
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-
-import model.GuessMyWordModel;
 import model.Memory;
-import view.GuessPanel;
 import view.UserInterface;
 
 public class Main {
@@ -17,9 +14,9 @@ public class Main {
 	private void init() {
 		
 		Memory model = new Memory();
-		UserInterface panel = new UserInterface(model);
-
-		JFrame frame = new JFrame("Guess My Word"); // s�tt n�got annat h�r
+		UserInterface panel = new Userinterface(model); // Fattar inte vilket error
+														//From here on english only so i dont get theese errors���
+		JFrame frame = new JFrame("Hello World!"); // THis fram is suppose to be something else
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(500, 600));

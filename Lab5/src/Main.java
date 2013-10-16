@@ -18,12 +18,12 @@ public class Main {
 		Memory model = new Memory();
 		UserInterface panel = new UserInterface(model);
 
-		JFrame frame = new JFrame("Guess My Word"); // sätt något annat här
+		JFrame frame = new JFrame("Guess My Word"); // sï¿½tt nï¿½got annat hï¿½r
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(500, 600));
 		frame.setVisible(true);
 		////TESTGITT
-		///TESTGITT2
+		///Removed by Kev
 	}
 }

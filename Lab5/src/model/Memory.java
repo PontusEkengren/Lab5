@@ -14,8 +14,9 @@ public class Memory {
 	
 	public void reset() {
 	//Reset everything but the score
-
-		users.add(null);
+		User temp = new User(1, "Kevin", 0);
+		users.add(temp);
+		
 	}
 	
 	public void turnCard() {

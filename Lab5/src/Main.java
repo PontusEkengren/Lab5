@@ -13,7 +13,7 @@ public class Main {
 		Main main = new Main();
 		main.init();
 	}
-	
+	// HÄr redigerar jag shit på rad 16 medan du skriver nått på en annan rad
 	private void init() {
 		Memory model = new Memory();
 		UserInterface panel = new UserInterface(model);

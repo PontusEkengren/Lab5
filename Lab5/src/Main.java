@@ -14,9 +14,8 @@ public class Main {
 	private void init() {
 		
 		Memory model = new Memory();
-		UserInterface panel = new UserInterface(model); // Fattar inte vilket error
-														//From here on english only so i dont get theese errors���
-		JFrame frame = new JFrame("Hello World!"); // THis fram is suppose to be something else
+		UserInterface panel = new UserInterface(model);
+		JFrame frame = new JFrame("Memory"); 
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(500, 600));

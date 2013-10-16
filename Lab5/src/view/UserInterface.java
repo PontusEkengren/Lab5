@@ -1,12 +1,9 @@
 package view;
 
 import java.awt.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.*;
-
 
 import model.Memory;
 
@@ -21,8 +18,13 @@ public class UserInterface extends JPanel {
 	public UserInterface(Memory model) {
 		this.model = model;
 
-		tempButton = new JButton("Guess");
-		tempText = new JTextField("Hellow World!");
+		tempButton = new JButton("Login");
+		tempText = new JTextField("Username");
+		statusLabel = new JLabel("Welcome to Memory!");
+		this.add(statusLabel);
+		this.add(tempText);
+		this.add(tempButton);
+		
 		//this.add(statusLabel);
 		
 

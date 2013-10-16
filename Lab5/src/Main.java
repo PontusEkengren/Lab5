@@ -18,7 +18,7 @@ public class Main {
 		JFrame frame = new JFrame("Memory"); 
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(500, 600));
+		frame.setSize(new Dimension(800, 600));
 		frame.setVisible(true);
 
 	}

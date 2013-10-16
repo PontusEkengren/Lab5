@@ -1,3 +1,4 @@
+package model;
 /** Programmet demonstrerar hur ett javax.swing.Timer-objekt
  *  kan användas för att utföra något med fördröjning.
  *  Timer-metoderna start() och stop() anropas för att starta

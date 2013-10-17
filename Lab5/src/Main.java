@@ -1,17 +1,19 @@
 import java.awt.Dimension;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+
 import model.Memory;
 import view.UserInterface;
 
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Main main = new Main();
 		main.init();
 	}
 
-	private void init() {
+	private void init() throws IOException {
 		
 		Memory model = new Memory();
 		UserInterface panel = new UserInterface(model);

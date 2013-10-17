@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable{
 
 	private double id;
 	private String name;

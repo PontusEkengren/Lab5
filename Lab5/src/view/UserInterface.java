@@ -36,10 +36,16 @@ public class UserInterface extends JPanel {
 		statusLabel2 = new JLabel("Logged In");
 		faildLogin = new JLabel("LoginFaild");
 		//connecting array of imagesIcons to actuall images
-		
+		CardImage=new ImageIcon[10];
+		CardImage[0]= new ImageIcon("images/DIGIT_0.gif");
+		CardImage[1]= new ImageIcon("images/DIGIT_1.gif");
+		CardImage[2]= new ImageIcon("images/DIGIT_2.gif");
+		CardImage[3]= new ImageIcon("images/DIGIT_3.gif");
 		//intilizing buttons to images
-		for (int i = 0; i < 10; i++) {
-			CardButton[i] = new JButton(CardImage[i]);
+		CardButton=new JButton[10];
+		for (int i = 0; i < 4; i++) {
+			this.add(CardButton[i] = new JButton(CardImage[i]));
+			CardButton[i].setVisible(false);
 		}
 		timer = new Timer(timerTime, new TimerListener());
 
@@ -99,6 +105,11 @@ public class UserInterface extends JPanel {
 		LoginButton.setVisible(false);
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
+		
+		for (int i = 0; i < 4; i++) {
+			CardButton[i].setVisible(true);
+		}
+			
 		// repaint();
 	}
 

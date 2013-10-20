@@ -14,7 +14,7 @@ public class UserInterface extends JPanel {
 	private JTextField username;
 	private JButton LoginButton, FlipButton, CardButton[];
 	private ImageIcon CardImage[], faceup, facedown, current;
-	private JPanel cP, nP, sP, pP, northFL;
+	private JPanel cP, nP, sP, pP, northFL1, northFL2;
 	private BorderLayout bl;
 	private GridLayout gl;
 	private BoxLayout boxL;
@@ -31,7 +31,8 @@ public class UserInterface extends JPanel {
 		nP = new JPanel();	//North Panel
 		sP = new JPanel();	//South Panel
 		pP = new JPanel();	//Panel Panel, Maybe for the memorygame if we switch visibility of login and the game
-		northFL = new JPanel(); //Just so structure the north login button NEW
+		northFL1 = new JPanel();
+		northFL2 = new JPanel(); //Just so structure the north login button NEW
 		
 		//Layouts
 		bl = new BorderLayout();
@@ -77,15 +78,16 @@ public class UserInterface extends JPanel {
 		
 		//North Panel setup
 		nP.setLayout(boxL);
-		nP.add(WelcomeLabel);
-		nP.add(northFL);
+		nP.add(northFL1);
+		northFL1.add(WelcomeLabel);
+		nP.add(northFL2); //Panel med FlowLayout
 		//NY KOD
-		northFL.add(username);
-		northFL.add(LoginButton);
+		northFL2.add(username);
+		northFL2.add(LoginButton);
 		
 		//Center Panel Setup
 		cP.add(FlipButton);
-		cP.add(test);
+		cP.add(faildLogin);
 		
 		//Sout Panel setup
 		sP.add(cred);

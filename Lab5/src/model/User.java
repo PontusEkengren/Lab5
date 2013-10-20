@@ -1,7 +1,9 @@
 package model;
+
 import java.io.Serializable;
 
-public class User implements Serializable{
+@SuppressWarnings("serial")
+public class User implements Serializable {
 
 	private double id;
 	private String name;
@@ -36,7 +38,7 @@ public class User implements Serializable{
 	public double getId() {
 		return id;
 	}
-	
+
 	public String toString() {
 		return "Id: " + getId() + ", Name: " + getName() + ", Score: "
 				+ getScore();

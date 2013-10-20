@@ -3,25 +3,24 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import controller.MemoryController;
 import model.Memory;
 import view.UserInterface;
 
 public class Main {
-	
-	public static void main(String[] args) throws IOException {
+
+	public static void main(String[] args) throws IOException,
+			ClassNotFoundException {
 		Main main = new Main();
 		main.init();
 	}
 
-	private void init() throws IOException {
-		
-		Memory model = new Memory();
-		UserInterface panel = new UserInterface(model);
-		JFrame frame = new JFrame("Memory"); 
-		frame.add(panel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(800, 600));
-		frame.setVisible(true);
+	private void init() throws IOException, ClassNotFoundException {
+
+		Memory theModel = new Memory();
+		UserInterface theView = new UserInterface();
+		MemoryController theController = new MemoryController(theView, theModel);
+		theView.setVisible(true);
 
 	}
 }

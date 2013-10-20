@@ -9,14 +9,15 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Memory {
-	
+
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
-	
 
-	public Memory() throws IOException {
+	public Memory() throws IOException, ClassNotFoundException {
 		reset();
+
 	}
+
 	public void save(String saveFile) throws IOException {
 		ObjectOutputStream oos = null;
 		try {
@@ -55,30 +56,49 @@ public class Memory {
 			throw e;
 		}
 	}
-	
-	public void reset() throws IOException {
-	//Reset everything but the score
-		User temp = new User(1, "Kevin", 0);
-		users.add(temp);
-		save("test.lst");
-		
+
+	public void reset() throws IOException, ClassNotFoundException {
+		// Reset everything but the score
+		load("test.lst");
+		// users.add(new User(2,"Pontus",0));
+		// save("test.lst");
+
 	}
-	
+
 	public void turnCard() {
-		
+
 	}
 
 	public boolean checkIfPair() {
 		return false;
 	}
-	
+
 	public boolean checkIfDone() {
 		return false;
 	}
-	
+
 	public void saveUserInfo() {
-		
+
 	}
 
+	public ArrayList<User> getUsers() {
+		return users;
+	}
+
+	public void loginButton(String inputText) {
+
+		Iterator<User> itr = users.iterator();
+		int u = 0;
+		while (itr.hasNext()) {
+
+			if (inputText == users.get(u).getName()) {
+				u += 1;
+			} // loggedInLayout(); i userinterface ska k'o'ras
+
+			else {
+				u += 1;
+			} // faildLogin.setVisible(true); ska k'o'ras i user interface
+		}
+	}
 
 }

@@ -15,16 +15,30 @@ public class UserInterface extends JPanel {
 	private JButton LoginButton, FlipButton, CardButton[];
 	private ImageIcon CardImage[], faceup, facedown, current;
 	private JPanel cP, nP, sP, pP, northFL1, northFL2;
+	
+	//Layouts
 	private BorderLayout bl;
 	private GridLayout gl;
 	private BoxLayout boxL;
 	private FlowLayout fL;
+	
+	//Menubar at the top
+	private JMenuBar menuBar;
+	private JMenuItem menuItem;
+	private JMenu menu;
 
 	public UserInterface() {
 		super();
 
 		// loading the panel
 		JFrame frame = new JFrame("Memory");
+		menuBar = new JMenuBar();
+		menu = new JMenu("File");
+		menuBar.add(menu);
+		menuItem = new JMenuItem("Exit");
+		menu.add(menuItem);
+		
+		frame.setJMenuBar(menuBar);
 		
 		//Panels
 		cP = new JPanel();	//Center Panel
@@ -80,8 +94,8 @@ public class UserInterface extends JPanel {
 		nP.setLayout(boxL);
 		nP.add(northFL1);
 		northFL1.add(WelcomeLabel);
+		
 		nP.add(northFL2); //Panel med FlowLayout
-		//NY KOD
 		northFL2.add(username);
 		northFL2.add(LoginButton);
 		

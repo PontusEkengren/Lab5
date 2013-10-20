@@ -10,18 +10,37 @@ public class UserInterface extends JPanel {
 
 	private Timer timer;
 	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
-	private JLabel WelcomeLabel, statusLabel2, faildLogin;
+	private JLabel WelcomeLabel, statusLabel2, faildLogin, test, cred;
 	private JTextField username;
-	private JButton LoginButton, FlipButton;
-	private JButton CardButton[];
-	private ImageIcon faceup, facedown, current;
-	private ImageIcon CardImage[];
+	private JButton LoginButton, FlipButton, CardButton[];
+	private ImageIcon CardImage[], faceup, facedown, current;
+	private JPanel cP, nP, sP, pP, northFL;
+	private BorderLayout bl;
+	private GridLayout gl;
+	private BoxLayout boxL;
+	private FlowLayout fL;
 
 	public UserInterface() {
 		super();
 
-		// loading tthe panel
+		// loading the panel
 		JFrame frame = new JFrame("Memory");
+		
+		//Panels
+		cP = new JPanel();	//Center Panel
+		nP = new JPanel();	//North Panel
+		sP = new JPanel();	//South Panel
+		pP = new JPanel();	//Panel Panel, Maybe for the memorygame if we switch visibility of login and the game
+		northFL = new JPanel(); //Just so structure the north login button NEW
+		
+		//Layouts
+		bl = new BorderLayout();
+		bl.setHgap(50);	//Sets how many pixel it should be between every object(Horisontal)
+		bl.setVgap(50);	// - || - (Vertical)
+		gl = new GridLayout(4,5);
+		boxL = new BoxLayout(nP, BoxLayout.PAGE_AXIS);
+		fL = new FlowLayout();
+		
 
 		// loading images
 		faceup = new ImageIcon("images/faceup.png");
@@ -35,31 +54,55 @@ public class UserInterface extends JPanel {
 		WelcomeLabel = new JLabel("Welcome to Memory!");
 		statusLabel2 = new JLabel("Logged In");
 		faildLogin = new JLabel("LoginFaild");
+		test = new JLabel("LOREM IPSUM SHIT");
+		cred = new JLabel("Credits & Copyright 2013 | Kev, Pent");
 		//connecting array of imagesIcons to actuall images
 		
 		//intilizing buttons to images
-		for (int i = 0; i < 10; i++) {
+		/*for (int i = 0; i < 10; i++) {
 			CardButton[i] = new JButton(CardImage[i]);
-		}
+		}*/
 		timer = new Timer(timerTime, new TimerListener());
 
 		// Some things are not default visible
 		statusLabel2.setVisible(false);
 		FlipButton.setVisible(false);
 		faildLogin.setVisible(false);
+		
 		// We're going to need these to actually see them
-		this.add(WelcomeLabel);
+		this.setLayout(bl);
+		this.add(cP, bl.CENTER);	//Central Panel to BorderLayout CENTER
+		this.add(nP, bl.NORTH);		//North Panel to BorderLayout NORTH
+		this.add(sP, bl.SOUTH);		//South Panel to BorderLayout SOUTH
+		
+		//North Panel setup
+		nP.setLayout(boxL);
+		nP.add(WelcomeLabel);
+		nP.add(northFL);
+		//NY KOD
+		northFL.add(username);
+		northFL.add(LoginButton);
+		
+		//Center Panel Setup
+		cP.add(FlipButton);
+		cP.add(test);
+		
+		//Sout Panel setup
+		sP.add(cred);
+		
+		//Old Stuff
+		/*this.add(WelcomeLabel);
 		this.add(username);
 		this.add(LoginButton);
 		this.add(statusLabel2);
 		this.add(faildLogin);
 		this.add(FlipButton);
-		this.add(faildLogin);
+		this.add(faildLogin);*/
 
 		// adding it all the ingredients the frame
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(800, 600));
+		frame.setSize(new Dimension(800, 600)); //Set dimensions of the main frame
 		frame.setVisible(true);
 
 	}

@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.*;
 
 public class Memory {
@@ -60,14 +59,13 @@ public class Memory {
 	public void reset() throws IOException, ClassNotFoundException {
 		// Reset everything but the score
 		load("test.lst");
-		// users.add(new User(2,"Pontus",0));
-		// save("test.lst");
-
+		
+		cards.add(new Card(0));
+		cards.add(new Card(1));
+		cards.add(new Card(2));
+		cards.add(new Card(3));
 	}
 
-	public void turnCard() {
-
-	}
 
 	public boolean checkIfPair() {
 		return false;

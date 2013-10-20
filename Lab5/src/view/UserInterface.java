@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class UserInterface extends JPanel {
 
 	private Timer timer;
@@ -12,7 +13,9 @@ public class UserInterface extends JPanel {
 	private JLabel WelcomeLabel, statusLabel2, faildLogin;
 	private JTextField username;
 	private JButton LoginButton, FlipButton;
+	private JButton CardButton[];
 	private ImageIcon faceup, facedown, current;
+	private ImageIcon CardImage[];
 
 	public UserInterface() {
 		super();
@@ -32,6 +35,8 @@ public class UserInterface extends JPanel {
 		WelcomeLabel = new JLabel("Welcome to Memory!");
 		statusLabel2 = new JLabel("Logged In");
 		faildLogin = new JLabel("LoginFaild");
+		//same as the previous but we add the pictures to the buttons
+		CardButton[0] = new JButton(CardImage[0]);
 
 		timer = new Timer(timerTime, new TimerListener());
 
@@ -55,6 +60,7 @@ public class UserInterface extends JPanel {
 		frame.setVisible(true);
 
 	}
+	
 
 	public void addLoginListener(ActionListener ll) {
 		LoginButton.addActionListener(ll);

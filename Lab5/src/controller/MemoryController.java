@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.Timer;
-
-//import view.TimerListener;
 import view.UserInterface;
 import model.Memory;
 import model.User;
@@ -16,8 +13,6 @@ public class MemoryController {
 
 	private Memory theModel;
 	private UserInterface theView;
-	private Timer timer;
-	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
 
 	public MemoryController(UserInterface theView, Memory theModel) {
 		this.theView = theView;
@@ -54,8 +49,7 @@ public class MemoryController {
 			try {
 				checkLogin(theView.getLoginText(), theModel.getUsers());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace();//Have no idea what this is (Auto-generated)
 			}
 		}
 	}
@@ -65,13 +59,10 @@ public class MemoryController {
 		@Override
 		public void actionPerformed(ActionEvent fl) {
 			theView.flipImage();
-			// timer is running
-			// theView.imageFaceDown();
 
 		}
 
 	}
 
-	// When flip image happends: timer.start();
 
 }

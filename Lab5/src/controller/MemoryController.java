@@ -20,7 +20,7 @@ public class MemoryController {
 
 		// this.theView.loggedInLayout();
 		this.theView.addLoginListener(new LoginListener());
-		this.theView.addFlipListener(new FlipListener());
+		this.theView.addCardListener(new CardListener());
 //
 	}
 
@@ -29,9 +29,8 @@ public class MemoryController {
 		boolean found = false;
 
 		for (int i = 0; i < this.theModel.getUsers().size(); i++) {
-			System.out.println(users.get(i).getName());// Prints all the
-														// Username's in the
-														// list
+			//Debugger //Prints all users in the list
+			//System.out.println(users.get(i).getName());
 			if (name.equals(users.get(i).getName())) {
 				this.theView.loggedInLayout();
 				found = true;
@@ -54,11 +53,12 @@ public class MemoryController {
 		}
 	}
 
-	private class FlipListener implements ActionListener {
+	
+	private class CardListener implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent fl) {
-			theView.flipImage();
+		public void actionPerformed(ActionEvent cl) {
+			theView.flipImage(0);//Want to send button number here
 
 		}
 

@@ -10,6 +10,7 @@ public class UserInterface extends JPanel {
 
 	private Timer timer;
 	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
+	private int numberOfCards = 10;
 	private JLabel WelcomeLabel, statusLabel2, faildLogin, test, cred;
 	private JTextField username;
 	private JButton LoginButton, FlipButton, CardButton[];
@@ -72,16 +73,25 @@ public class UserInterface extends JPanel {
 		test = new JLabel("LOREM IPSUM SHIT");
 		cred = new JLabel("Credits & Copyright 2013 | Kev, Pent");
 		//connecting array of imagesIcons to actuall images
-		CardImage=new ImageIcon[10];
+		CardImage=new ImageIcon[numberOfCards+1];
+		
 		CardImage[0]= new ImageIcon("images/DIGIT_0.gif");
 		CardImage[1]= new ImageIcon("images/DIGIT_1.gif");
 		CardImage[2]= new ImageIcon("images/DIGIT_2.gif");
 		CardImage[3]= new ImageIcon("images/DIGIT_3.gif");
+		CardImage[4]= new ImageIcon("images/DIGIT_4.gif");
+		CardImage[5]= new ImageIcon("images/DIGIT_5.gif");
+		CardImage[6]= new ImageIcon("images/DIGIT_6.gif");
+		CardImage[7]= new ImageIcon("images/DIGIT_7.gif");
+		CardImage[8]= new ImageIcon("images/DIGIT_8.gif");
+		CardImage[9]= new ImageIcon("images/DIGIT_9.gif");
+		CardImage[10]= new ImageIcon("images/facedown.png");
+		
 		//intilizing buttons to images
 
-		CardButton=new JButton[10];
-		for (int i = 0; i < 4; i++) {
-			this.add(CardButton[i] = new JButton(CardImage[i]));
+		CardButton=new JButton[numberOfCards+1];
+		for (int i = 0; i < numberOfCards; i++) {
+			this.add(CardButton[i] = new JButton(CardImage[10]));
 			CardButton[i].setVisible(false);
 		}
 
@@ -108,9 +118,9 @@ public class UserInterface extends JPanel {
 		northFL2.add(LoginButton);
 		
 		//Center Panel Setup
-		cP.add(FlipButton);
+		//cP.add(FlipButton);
 		cP.add(faildLogin);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < numberOfCards; i++) {
 			cP.add(CardButton[i]);
 		}
 		
@@ -129,11 +139,27 @@ public class UserInterface extends JPanel {
 		// adding it all the ingredients the frame
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(800, 600)); //Set dimensions of the main frame
+		frame.setSize(new Dimension(720, 600)); //New Framesize
 		frame.setVisible(true);
 
 	}
-	
+
+	public void addCardListener(ActionListener cl) {
+		//JButton b = new JButton("Change Image");
+		CardButton[0].addActionListener(cl);
+		/*
+		 * new ActionListener(){
+		    public void actionPerformed(ActionEvent ae){
+		        bi = bi2;
+		        //invalidate();
+		        repaint();
+		    }
+		}
+		 */
+		//for (int i = 0; i < numberOfCards; i++) {
+		//	CardButton[i] = new JButton(CardImage[10]);
+		//}
+	}
 
 	public void addLoginListener(ActionListener ll) {
 		LoginButton.addActionListener(ll);
@@ -147,17 +173,19 @@ public class UserInterface extends JPanel {
 		String tmp = username.getText();
 		return tmp;
 	}
-
+/*
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		int x = (this.getWidth() - current.getIconWidth()) / 2;
 		int y = (this.getHeight() - current.getIconHeight()) / 2;
 		current.paintIcon(this, g, x, y);
 	}
+*/
+	public void flipImage(int buttonNr) {
 
-	public void flipImage() {
 
-		current = faceup;
+		CardButton[buttonNr].setIcon(CardImage[buttonNr]);
+
 		repaint();
 		timer.start();
 	}
@@ -170,23 +198,20 @@ public class UserInterface extends JPanel {
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
 		
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < numberOfCards; i++) {
 			CardButton[i].setVisible(true);
 		}
-			
-		// repaint();
 	}
 
 	public void loggedInFaild() {
 		faildLogin.setVisible(true);
 
-		// repaint();
 	}
 
 	private class TimerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			timer.stop();
-			current = facedown;
+			CardButton[0].setIcon(CardImage[10]);
 			repaint();
 		}
 	}

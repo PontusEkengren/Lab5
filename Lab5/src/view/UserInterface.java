@@ -35,9 +35,12 @@ public class UserInterface extends JPanel {
 		WelcomeLabel = new JLabel("Welcome to Memory!");
 		statusLabel2 = new JLabel("Logged In");
 		faildLogin = new JLabel("LoginFaild");
-		//same as the previous but we add the pictures to the buttons
-		CardButton[0] = new JButton(CardImage[0]);
-
+		//connecting array of imagesIcons to actuall images
+		
+		//intilizing buttons to images
+		for (int i = 0; i < 10; i++) {
+			CardButton[i] = new JButton(CardImage[i]);
+		}
 		timer = new Timer(timerTime, new TimerListener());
 
 		// Some things are not default visible

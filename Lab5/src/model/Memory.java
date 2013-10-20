@@ -59,11 +59,9 @@ public class Memory {
 	public void reset() throws IOException, ClassNotFoundException {
 		// Reset everything but the score
 		load("test.lst");
-		
-		cards.add(new Card(0));
-		cards.add(new Card(1));
-		cards.add(new Card(2));
-		cards.add(new Card(3));
+		for (int i = 0; i < 10; i++) {
+			cards.add(new Card(i));
+					}
 	}
 
 

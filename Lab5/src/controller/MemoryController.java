@@ -21,7 +21,7 @@ public class MemoryController {
 		// this.theView.loggedInLayout();
 		this.theView.addLoginListener(new LoginListener());
 		this.theView.addFlipListener(new FlipListener());
-
+//
 	}
 
 	public void checkLogin(String name, ArrayList<User> users)

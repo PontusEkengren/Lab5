@@ -8,13 +8,14 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Memory {
+	private int done;
 
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
 
+
 	public Memory() throws IOException, ClassNotFoundException {
 		reset();
-
 	}
 
 	public void save(String saveFile) throws IOException {
@@ -59,18 +60,48 @@ public class Memory {
 	public void reset() throws IOException, ClassNotFoundException {
 		// Reset everything but the score
 		load("test.lst");
-		for (int i = 0; i < 10; i++) {
-			cards.add(new Card(i));
-					}
+		int k=0;
+		for (int j = 0; j < 2; j++) {
+		for (int i = 0; i < 5; i++) {
+			
+			cards.add(new Card(k,i));//k goes from 0 to 9 for 10 cards
+			cards.add(new Card(k,i));//And i goes from 0 to 4 (two times) for 10 cards
+			//System.out.println("k: "+k+" i:"+i);
+			k++;
+		}
+			
+		}
+
 	}
 
 
-	public boolean checkIfPair() {
-		return false;
+	public boolean checkIfPair(Card card1,Card card2) {
+
+		if(card1.getPairId()==card2.getPairId()){
+			//System.out.println(card1.getPairId());
+			//System.out.println(card2.getPairId());
+			return true;
+		}
+		else{
+			return false;
+		}
+		
 	}
 
 	public boolean checkIfDone() {
+		
+		for (int i = 0; i < (cards.size()/4); i++) {
+			if(cards.get(i).getFound()){
+				done++;
+				//System.out.println("done: "+done);
+				//System.out.println("cards size: "+cards.size());
+				if(done==cards.size()){
+					return true;
+				}	
+			}
+		}
 		return false;
+		
 	}
 
 	public void saveUserInfo() {
@@ -79,6 +110,10 @@ public class Memory {
 
 	public ArrayList<User> getUsers() {
 		return users;
+	}
+	
+	public ArrayList<Card> getCards() { // I know im sending the acutal array of cards and not a copy.. thats the point
+		return cards;
 	}
 
 	public void loginButton(String inputText) {

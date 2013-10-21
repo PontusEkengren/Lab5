@@ -5,17 +5,23 @@ import java.io.Serializable;
 
 public class Card implements Serializable{
 	private int id;
+	private int pairId;
 	//private ImageIcon icon[], standardCard;
 	private boolean found;
-	public Card(int id) {
+	public Card(int id,int pairId) {
 		//standardCard = new ImageIcon("images/facedown.png");
 		this.id=id;
+		this.pairId=pairId;
 		//this.icon[0]=standardCard;
 		//this.icon[1]=image;
 	}
 	
 	public int getId(){
 		return id;
+	}
+	
+	public int getPairId(){
+		return pairId;
 	}
 	
 	public void setFound(boolean found){

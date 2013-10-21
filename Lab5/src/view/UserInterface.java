@@ -225,13 +225,14 @@ public class UserInterface extends JPanel {
 		CardButton[buttonNr].setIcon(CardImage[buttonNr]);
 		
 		repaint();
+		//Every-other time will it flip back
 		if (pairChecker == true) {
-			System.out.println("if");
+			//System.out.println("if");
 			pairNumber[1] = buttonNr;
 			pairChecker = false;
 			timerCard.start();
 		} else if(pairChecker==false) {
-			System.out.println("elseif");
+			//System.out.println("elseif");
 			pairNumber[0] = buttonNr;
 			pairChecker = true;
 		}
@@ -271,6 +272,21 @@ public class UserInterface extends JPanel {
 			faildLogin.setVisible(false);
 			timerFaildLogin.stop();
 		}
+	}
+
+	public void flipPair(int buttonNr) {
+
+
+			CardButton[buttonNr].setIcon(CardImage[buttonNr]);
+			
+			repaint();
+			//Every-other time will it flip back
+			if (pairChecker == true) {
+				//System.out.println("if");
+				//pairNumber[1] = buttonNr;
+				pairChecker = false;
+			}
+		
 	}
 
 }

@@ -33,6 +33,7 @@ public class MemoryController {
 		this.theView.addHighScoreListener(new HighScoreListener());
 		this.theView.addRegisterButtonListener(new RegisterButtonListener());
 		this.theView.addRegisterButtonListener2(new RegisterButtonListener2());
+		this.theView.addResetListener(new ResetListener());
 		//
 	}
 
@@ -45,6 +46,11 @@ public class MemoryController {
 			// System.out.println(users.get(i).getName());
 			if (name.equals(users.get(i).getName())) {
 				this.theView.loggedInLayout();
+				this.theView.displayPlayerScore(Integer.toString(users.get(i).getScore()));
+				
+				this.theView.setPlayerId(users.get(i).getId());
+				this.theView.setPlayerName(users.get(i).getName());
+				this.theView.setPlayerScore(users.get(i).getScore());
 				found = true;
 				// this.theView.repaint();
 			}
@@ -104,7 +110,9 @@ public class MemoryController {
 							theView.flipPair(i);
 							if(theModel.checkIfDone()==true)
 							{
-								System.out.println("Congrats u won!"); // Is suppose to visualize this
+								theView.createMessage("Congrats you won and gained 1 point to your highscore!");
+								//theModel.addScore(theView.getPlayerId());
+								//theView.setPlayerScoreLabel(theView.getPlayerScore()+1);
 							}
 						}
 						else{
@@ -155,22 +163,43 @@ public class MemoryController {
 		}
 
 	}
+	private class ResetListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				theModel.reset();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+		
+	}
 
 	private class RegisterButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (theView.getRegisterUsername() != null) {
-				theModel.addUser(theModel.getNoOfUsers() + 1, theView.getRegisterUsername(), 0);
-				try {
-					theModel.save("test.lst");
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				theView.hideRegister();
+			if (theView.getRegisterUsername().length() < 2) {						//If username is not null
+				theView.createError("Username must be 3 or more characters");
 			} else {
-
+				if(theModel.checkIfDuplicate(theView.getRegisterUsername())){ 	//If there is a duplicate
+					theView.createError("Username is already taken!");
+				} else{ //If there is no duplicate
+					theModel.addUser(theModel.getNoOfUsers() + 1, theView.getRegisterUsername(), 0);
+					try {
+						theModel.save("test.lst");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					theView.hideRegister();
+				}
 			}
 		}
 	}

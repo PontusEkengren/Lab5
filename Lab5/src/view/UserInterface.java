@@ -32,7 +32,7 @@ public class UserInterface extends JPanel {
 
 	// Menubar at the top
 	private JMenuBar menuBar;
-	private JMenuItem menuExit, menuHighScore, menuRegister;
+	private JMenuItem menuExit, menuHighScore, menuRegister, menuReset;
 	private JMenu menu;
 	
 	//Custom Dialog
@@ -41,13 +41,17 @@ public class UserInterface extends JPanel {
 	
 	//Player Info
 	String playerName = "";
-	int playerScore = 5;
-	private JLabel score, score_num;
+	int playerId;
+	int playerScore = 0;
+	int playerTries = 0;
+	private JLabel score, score_num, tries;
+	private JLabel playerScore_;
 
 	public UserInterface() {
 		super();
 		//Player Info
 		score = new JLabel("Score: ");
+		tries = new JLabel("Tries: ");
 		score_num = new JLabel();
 		score_num.setText(String.valueOf(playerScore));
 		// loading the panel
@@ -99,6 +103,8 @@ public class UserInterface extends JPanel {
 		menuExit = new JMenuItem("Exit");
 		menuRegister = new JMenuItem("Register");
 		menuHighScore = new JMenuItem("HighScore");
+		menuReset = new JMenuItem("Reset");
+		menu.add(menuReset);
 		menu.add(menuRegister);
 		menu.add(menuHighScore);
 		menu.add(menuExit);
@@ -194,7 +200,9 @@ public class UserInterface extends JPanel {
 		}
 
 		// Sout Panel setup
-		sP.add(cred);
+		//sP.add(cred);
+		sP.add(tries);
+		
 		sP.add(score);
 		sP.add(score_num);
 		
@@ -223,6 +231,7 @@ public class UserInterface extends JPanel {
 
 	}
 
+	//***** Action Listeners
 	public void addLoginListener(ActionListener ll) {
 		LoginButton.addActionListener(ll);
 	}
@@ -245,6 +254,31 @@ public class UserInterface extends JPanel {
 	public void addRegisterButtonListener2(ActionListener rbl2){
 		RegisterButton.addActionListener(rbl2);
 	}
+	public void addResetListener(ActionListener mrl){
+		menuReset.addActionListener(mrl);
+	}
+	
+	
+	//*******************************************
+	public int getPlayerId(){
+		return playerId;
+	}
+	public int getPlayerScore(){
+		return playerScore;
+	}
+	public void setPlayerId(int id){
+		playerId = id;
+	}
+	public void setPlayerName(String name){
+		playerName = name;
+	}
+	public void setPlayerScore(int score){
+		playerScore = score;
+	}
+	public void setPlayerScoreLabel(int score){
+		playerScore_.setText(Integer.toString(score));
+	}
+	//*******************************************
 	public String getLoginText() {
 		String tmp = username.getText();
 		return tmp;
@@ -264,13 +298,16 @@ public class UserInterface extends JPanel {
 	public void hideRegister(){
 		register.setVisible(false);
 	}
-	public void setPlayerScore(int score){
-		playerScore += score;
+	public void createError(String error){
+		JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 	}
-	public void setPlayerName(String name){
-		playerName = name;
+	public void createMessage(String message){
+		JOptionPane.showMessageDialog(null, message);
 	}
-
+	public void displayPlayerScore(String score){
+		playerScore_ = new JLabel(score);
+		sP.add(playerScore_);
+	}
 	public void flipImage(int buttonNr) {
 
 		CardButton[buttonNr].setIcon(CardImage[buttonNr]);

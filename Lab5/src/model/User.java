@@ -5,7 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
-	private double id;
+	private int id;
 	private String name;
 	private int score;
 
@@ -35,7 +35,7 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public double getId() {
+	public int getId() {
 		return id;
 	}
 

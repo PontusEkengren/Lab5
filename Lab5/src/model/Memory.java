@@ -107,6 +107,15 @@ public class Memory {
 		return false;
 		
 	}
+	public boolean checkIfDuplicate(String name){
+		int hit = 0;
+		for(int i=0; i< users.size(); i++){
+			if(name.equals(users.get(i).getName().toString())){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void saveUserInfo() {
 
@@ -123,6 +132,9 @@ public class Memory {
 	public int getNoOfUsers(){
 		return users.size();
 
+	}
+	public void addScore(int id){
+		users.get(id).addScore();
 	}
 
 	public void loginButton(String inputText) {

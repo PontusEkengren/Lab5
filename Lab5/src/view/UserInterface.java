@@ -142,16 +142,16 @@ public class UserInterface extends JPanel {
 		CardImage = new ImageIcon[numberOfCards + 1];
 		pairNumber = new int[2];
 
-		CardImage[0] = new ImageIcon("images/DIGIT_0.gif");
-		CardImage[1] = new ImageIcon("images/DIGIT_1.gif");
-		CardImage[2] = new ImageIcon("images/DIGIT_2.gif");
-		CardImage[3] = new ImageIcon("images/DIGIT_3.gif");
-		CardImage[4] = new ImageIcon("images/DIGIT_4.gif");
-		CardImage[5] = new ImageIcon("images/DIGIT_5.gif");
-		CardImage[6] = new ImageIcon("images/DIGIT_6.gif");
-		CardImage[7] = new ImageIcon("images/DIGIT_7.gif");
-		CardImage[8] = new ImageIcon("images/DIGIT_8.gif");
-		CardImage[9] = new ImageIcon("images/DIGIT_9.gif");
+		CardImage[0] = new ImageIcon("images/flags/se.png");
+		CardImage[1] = new ImageIcon("images/flags/se.png");
+		CardImage[2] = new ImageIcon("images/flags/china.png");
+		CardImage[3] = new ImageIcon("images/flags/china.png");
+		CardImage[4] = new ImageIcon("images/flags/ger.png");
+		CardImage[5] = new ImageIcon("images/flags/ger.png");
+		CardImage[6] = new ImageIcon("images/flags/uk.png");
+		CardImage[7] = new ImageIcon("images/flags/uk.png");
+		CardImage[8] = new ImageIcon("images/flags/usa.png");
+		CardImage[9] = new ImageIcon("images/flags/usa.png");
 		CardImage[10] = new ImageIcon("images/facedown.png");
 
 		// intilizing buttons to images

@@ -31,6 +31,8 @@ public class MemoryController {
 		this.theView.addExitListener(new ExitListener());
 		this.theView.addRegisterListener(new RegisterListener());
 		this.theView.addHighScoreListener(new HighScoreListener());
+		this.theView.addRegisterButtonListener(new RegisterButtonListener());
+		this.theView.addRegisterButtonListener2(new RegisterButtonListener2());
 		//
 	}
 
@@ -74,6 +76,7 @@ public class MemoryController {
 			for (int i = 0; i < numberOfCards; i++) {
 
 				if (cl.getActionCommand().equals("button" + i)) {
+<<<<<<< HEAD
 					//System.out.println("pressed" + i);
 					//System.out.println(cl.getActionCommand().toString());
 					//theModel.checkIfPair(card1, card2)
@@ -113,36 +116,68 @@ public class MemoryController {
 					else{
 						theView.flipImage(i);
 					}
+=======
+					// System.out.println("pressed" + i);
+					// System.out.println(cl.getActionCommand().toString());
+					theView.flipImage(i);// Want to send button number here
+>>>>>>> 8edc98548534cfefa1409a202176310ccf650b34
 				}
 			}
 		}
 	}
+
 	private class ExitListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
-			
+
 		}
-		
+
 	}
+
 	private class RegisterListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			theView.displayRegister();
-			
+
 		}
-		
+
 	}
+
 	private class HighScoreListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			ArrayList<User> users = theModel.getUsers();
 			theView.displayHighScore();
-			
+
 		}
-		
+
+	}
+
+	private class RegisterButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (theView.getRegisterUsername() != null) {
+				theModel.addUser(theModel.getNoOfUsers() + 1, theView.getRegisterUsername(), 0);
+				theView.hideRegister();
+			} else {
+
+			}
+		}
+	}
+
+	private class RegisterButtonListener2 implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			theView.displayRegister();
+
+		}
+
 	}
 
 }

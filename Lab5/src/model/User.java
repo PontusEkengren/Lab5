@@ -43,5 +43,8 @@ public class User implements Serializable {
 		return "Id: " + getId() + ", Name: " + getName() + ", Score: "
 				+ getScore();
 	}
+	public String toLowString() {
+		return getId() + "," + getName() + "," + getScore() + ";";
+	}
 
 }

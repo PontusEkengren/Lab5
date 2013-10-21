@@ -17,6 +17,10 @@ public class Memory {
 	public Memory() throws IOException, ClassNotFoundException {
 		reset();
 	}
+	public void addUser(int id, String username, int score){
+		User adding = new User(id, username, score);
+		users.add(adding);
+	}
 
 	public void save(String saveFile) throws IOException {
 		ObjectOutputStream oos = null;
@@ -111,9 +115,14 @@ public class Memory {
 	public ArrayList<User> getUsers() {
 		return users;
 	}
+<<<<<<< HEAD
 	
 	public ArrayList<Card> getCards() { // I know im sending the acutal array of cards and not a copy.. thats the point
 		return cards;
+=======
+	public int getNoOfUsers(){
+		return users.size();
+>>>>>>> 8edc98548534cfefa1409a202176310ccf650b34
 	}
 
 	public void loginButton(String inputText) {

@@ -11,6 +11,7 @@ import model.User;
 
 public class MemoryController {
 
+	private int numberOfCards = 10;
 	private Memory theModel;
 	private UserInterface theView;
 
@@ -21,7 +22,7 @@ public class MemoryController {
 		// this.theView.loggedInLayout();
 		this.theView.addLoginListener(new LoginListener());
 		this.theView.addCardListener(new CardListener());
-//
+		//
 	}
 
 	public void checkLogin(String name, ArrayList<User> users)
@@ -29,8 +30,8 @@ public class MemoryController {
 		boolean found = false;
 
 		for (int i = 0; i < this.theModel.getUsers().size(); i++) {
-			//Debugger //Prints all users in the list
-			//System.out.println(users.get(i).getName());
+			// Debugger //Prints all users in the list
+			// System.out.println(users.get(i).getName());
 			if (name.equals(users.get(i).getName())) {
 				this.theView.loggedInLayout();
 				found = true;
@@ -48,21 +49,28 @@ public class MemoryController {
 			try {
 				checkLogin(theView.getLoginText(), theModel.getUsers());
 			} catch (IOException e) {
-				e.printStackTrace();//Have no idea what this is (Auto-generated)
+				e.printStackTrace();// Have no idea what this is
+									// (Auto-generated)
 			}
 		}
 	}
 
-	
 	private class CardListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent cl) {
-			theView.flipImage(0);//Want to send button number here
+
+			for (int i = 0; i < numberOfCards; i++) {
+
+				if (cl.getActionCommand().equals("button" + i)) {
+					//System.out.println("pressed" + i);
+					//System.out.println(cl.getActionCommand().toString());
+					theView.flipImage(i);// Want to send button number here
+				}
+			}
 
 		}
 
 	}
-
 
 }

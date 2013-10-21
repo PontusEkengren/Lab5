@@ -8,22 +8,25 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class UserInterface extends JPanel {
 
-	private Timer timer;
+	private Timer timerCard, timerFaildLogin;
 	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
 	private int numberOfCards = 10;
+	// to check for pairs
+	private boolean pairChecker = false;
+	private int[] pairNumber;
 	private JLabel WelcomeLabel, statusLabel2, faildLogin, test, cred;
 	private JTextField username;
 	private JButton LoginButton, FlipButton, CardButton[];
 	private ImageIcon CardImage[], faceup, facedown, current;
 	private JPanel cP, nP, sP, pP, northFL1, northFL2;
-	
-	//Layouts
+
+	// Layouts
 	private BorderLayout bl;
 	private GridLayout gl;
 	private BoxLayout boxL;
 	private FlowLayout fL;
-	
-	//Menubar at the top
+
+	// Menubar at the top
 	private JMenuBar menuBar;
 	private JMenuItem menuItem;
 	private JMenu menu;
@@ -38,25 +41,26 @@ public class UserInterface extends JPanel {
 		menuBar.add(menu);
 		menuItem = new JMenuItem("Exit");
 		menu.add(menuItem);
-		
+
 		frame.setJMenuBar(menuBar);
-		
-		//Panels
-		cP = new JPanel();	//Center Panel
-		nP = new JPanel();	//North Panel
-		sP = new JPanel();	//South Panel
-		pP = new JPanel();	//Panel Panel, Maybe for the memorygame if we switch visibility of login and the game
+
+		// Panels
+		cP = new JPanel(); // Center Panel
+		nP = new JPanel(); // North Panel
+		sP = new JPanel(); // South Panel
+		pP = new JPanel(); // Panel Panel, Maybe for the memorygame if we switch
+							// visibility of login and the game
 		northFL1 = new JPanel();
-		northFL2 = new JPanel(); //Just so structure the north login button NEW
-		
-		//Layouts
+		northFL2 = new JPanel(); // Just so structure the north login button NEW
+
+		// Layouts
 		bl = new BorderLayout();
-		bl.setHgap(50);	//Sets how many pixel it should be between every object(Horisontal)
-		bl.setVgap(50);	// - || - (Vertical)
-		gl = new GridLayout(4,5);
+		bl.setHgap(50); // Sets how many pixel it should be between every
+						// object(Horisontal)
+		bl.setVgap(50); // - || - (Vertical)
+		gl = new GridLayout(4, 5);
 		boxL = new BoxLayout(nP, BoxLayout.PAGE_AXIS);
 		fL = new FlowLayout();
-		
 
 		// loading images
 		faceup = new ImageIcon("images/faceup.png");
@@ -72,93 +76,85 @@ public class UserInterface extends JPanel {
 		faildLogin = new JLabel("LoginFaild");
 		test = new JLabel("LOREM IPSUM SHIT");
 		cred = new JLabel("Credits & Copyright 2013 | Kev, Pent");
-		//connecting array of imagesIcons to actuall images
-		CardImage=new ImageIcon[numberOfCards+1];
-		
-		CardImage[0]= new ImageIcon("images/DIGIT_0.gif");
-		CardImage[1]= new ImageIcon("images/DIGIT_1.gif");
-		CardImage[2]= new ImageIcon("images/DIGIT_2.gif");
-		CardImage[3]= new ImageIcon("images/DIGIT_3.gif");
-		CardImage[4]= new ImageIcon("images/DIGIT_4.gif");
-		CardImage[5]= new ImageIcon("images/DIGIT_5.gif");
-		CardImage[6]= new ImageIcon("images/DIGIT_6.gif");
-		CardImage[7]= new ImageIcon("images/DIGIT_7.gif");
-		CardImage[8]= new ImageIcon("images/DIGIT_8.gif");
-		CardImage[9]= new ImageIcon("images/DIGIT_9.gif");
-		CardImage[10]= new ImageIcon("images/facedown.png");
-		
-		//intilizing buttons to images
+		// connecting array of imagesIcons to actuall images
+		CardImage = new ImageIcon[numberOfCards + 1];
+		pairNumber = new int[2];
 
-		CardButton=new JButton[numberOfCards+1];
+		CardImage[0] = new ImageIcon("images/DIGIT_0.gif");
+		CardImage[1] = new ImageIcon("images/DIGIT_1.gif");
+		CardImage[2] = new ImageIcon("images/DIGIT_2.gif");
+		CardImage[3] = new ImageIcon("images/DIGIT_3.gif");
+		CardImage[4] = new ImageIcon("images/DIGIT_4.gif");
+		CardImage[5] = new ImageIcon("images/DIGIT_5.gif");
+		CardImage[6] = new ImageIcon("images/DIGIT_6.gif");
+		CardImage[7] = new ImageIcon("images/DIGIT_7.gif");
+		CardImage[8] = new ImageIcon("images/DIGIT_8.gif");
+		CardImage[9] = new ImageIcon("images/DIGIT_9.gif");
+		CardImage[10] = new ImageIcon("images/facedown.png");
+
+		// intilizing buttons to images
+
+		CardButton = new JButton[numberOfCards + 1];
 		for (int i = 0; i < numberOfCards; i++) {
 			this.add(CardButton[i] = new JButton(CardImage[10]));
 			CardButton[i].setVisible(false);
 		}
 
-		timer = new Timer(timerTime, new TimerListener());
+		timerCard = new Timer(timerTime, new TimerListener());
+		timerFaildLogin = new Timer(timerTime + 1000, new TimerListenerLogin());
 
 		// Some things are not default visible
 		statusLabel2.setVisible(false);
 		FlipButton.setVisible(false);
 		faildLogin.setVisible(false);
-		
+
 		// We're going to need these to actually see them
 		this.setLayout(bl);
-		this.add(cP, bl.CENTER);	//Central Panel to BorderLayout CENTER
-		this.add(nP, bl.NORTH);		//North Panel to BorderLayout NORTH
-		this.add(sP, bl.SOUTH);		//South Panel to BorderLayout SOUTH
-		
-		//North Panel setup
+		this.add(cP, bl.CENTER); // Central Panel to BorderLayout CENTER
+		this.add(nP, bl.NORTH); // North Panel to BorderLayout NORTH
+		this.add(sP, bl.SOUTH); // South Panel to BorderLayout SOUTH
+
+		// North Panel setup
 		nP.setLayout(boxL);
 		nP.add(northFL1);
 		northFL1.add(WelcomeLabel);
-		
-		nP.add(northFL2); //Panel med FlowLayout
+
+		nP.add(northFL2); // Panel med FlowLayout
 		northFL2.add(username);
 		northFL2.add(LoginButton);
-		
-		//Center Panel Setup
-		//cP.add(FlipButton);
+
+		// Center Panel Setup
+		// cP.add(FlipButton);
 		cP.add(faildLogin);
 		for (int i = 0; i < numberOfCards; i++) {
 			cP.add(CardButton[i]);
 		}
-		
-		//Sout Panel setup
+
+		// Sout Panel setup
 		sP.add(cred);
-		
-		//Old Stuff
-		/*this.add(WelcomeLabel);
-		this.add(username);
-		this.add(LoginButton);
-		this.add(statusLabel2);
-		this.add(faildLogin);
-		this.add(FlipButton);
-		this.add(faildLogin);*/
+
+		// Old Stuff
+		/*
+		 * this.add(WelcomeLabel); this.add(username); this.add(LoginButton);
+		 * this.add(statusLabel2); this.add(faildLogin); this.add(FlipButton);
+		 * this.add(faildLogin);
+		 */
 
 		// adding it all the ingredients the frame
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(720, 600)); //New Framesize
+		frame.setSize(new Dimension(720, 600)); // New Framesize
 		frame.setVisible(true);
 
 	}
 
 	public void addCardListener(ActionListener cl) {
-		//JButton b = new JButton("Change Image");
-		CardButton[0].addActionListener(cl);
-		/*
-		 * new ActionListener(){
-		    public void actionPerformed(ActionEvent ae){
-		        bi = bi2;
-		        //invalidate();
-		        repaint();
-		    }
+
+		for (int i = 0; i < numberOfCards; i++) {
+			CardButton[i].setActionCommand("button" + i);
+			CardButton[i].addActionListener(cl);
 		}
-		 */
-		//for (int i = 0; i < numberOfCards; i++) {
-		//	CardButton[i] = new JButton(CardImage[10]);
-		//}
+
 	}
 
 	public void addLoginListener(ActionListener ll) {
@@ -173,21 +169,23 @@ public class UserInterface extends JPanel {
 		String tmp = username.getText();
 		return tmp;
 	}
-/*
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		int x = (this.getWidth() - current.getIconWidth()) / 2;
-		int y = (this.getHeight() - current.getIconHeight()) / 2;
-		current.paintIcon(this, g, x, y);
-	}
-*/
+
 	public void flipImage(int buttonNr) {
 
-
 		CardButton[buttonNr].setIcon(CardImage[buttonNr]);
-
+		
 		repaint();
-		timer.start();
+		if (pairChecker == true) {
+			System.out.println("if");
+			pairNumber[1] = buttonNr;
+			pairChecker = false;
+			timerCard.start();
+		} else if(pairChecker==false) {
+			System.out.println("elseif");
+			pairNumber[0] = buttonNr;
+			pairChecker = true;
+		}
+
 	}
 
 	public void loggedInLayout() {
@@ -197,7 +195,7 @@ public class UserInterface extends JPanel {
 		LoginButton.setVisible(false);
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
-		
+
 		for (int i = 0; i < numberOfCards; i++) {
 			CardButton[i].setVisible(true);
 		}
@@ -206,13 +204,22 @@ public class UserInterface extends JPanel {
 	public void loggedInFaild() {
 		faildLogin.setVisible(true);
 
+		timerFaildLogin.start();
 	}
 
 	private class TimerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			timer.stop();
-			CardButton[0].setIcon(CardImage[10]);
+			timerCard.stop();
+			CardButton[pairNumber[0]].setIcon(CardImage[10]);
+			CardButton[pairNumber[1]].setIcon(CardImage[10]);
 			repaint();
+		}
+	}
+
+	private class TimerListenerLogin implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			faildLogin.setVisible(false);
+			timerFaildLogin.stop();
 		}
 	}
 

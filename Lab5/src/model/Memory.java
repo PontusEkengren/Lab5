@@ -127,6 +127,15 @@ public class Memory {
 		return false;
 		
 	}
+	public boolean checkIfDuplicate(String name){
+		int hit = 0;
+		for(int i=0; i< users.size(); i++){
+			if(name.equals(users.get(i).getName().toString())){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void saveUserInfo() {
 
@@ -144,6 +153,7 @@ public class Memory {
 		return users.size();
 
 	}
+
 	
 	public void shuffleCards(){
 		Collections.shuffle(cards);
@@ -151,6 +161,10 @@ public class Memory {
 	
 	public ArrayList<Card> getNewCardOrder(){
 		return newOrder;
+	}
+
+	public void addScore(int id){
+		users.get(id).addScore();
 
 	}
 

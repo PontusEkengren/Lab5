@@ -164,6 +164,9 @@ public class UserInterface extends JPanel {
 	public void addFlipListener(ActionListener fl) {
 		FlipButton.addActionListener(fl);
 	}
+	public void addExitListener(ActionListener el) {
+		menuItem.addActionListener(el);
+	}
 
 	public String getLoginText() {
 		String tmp = username.getText();

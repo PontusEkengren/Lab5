@@ -22,6 +22,7 @@ public class MemoryController {
 		// this.theView.loggedInLayout();
 		this.theView.addLoginListener(new LoginListener());
 		this.theView.addCardListener(new CardListener());
+		this.theView.addExitListener(new ExitListener());
 		//
 	}
 
@@ -71,6 +72,15 @@ public class MemoryController {
 
 		}
 
+	}
+	private class ExitListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+			
+		}
+		
 	}
 
 }

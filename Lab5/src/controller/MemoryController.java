@@ -17,6 +17,7 @@ public class MemoryController {
 	private int firstCard=-1; // To check if both of the cards have been drawn
 	private int bothDrawn=0;
 	private boolean everyOther=true;
+	private int[] newOrderArray;
 	private Memory theModel;
 	private UserInterface theView;
 	
@@ -24,8 +25,10 @@ public class MemoryController {
 	public MemoryController(UserInterface theView, Memory theModel) {
 		this.theView = theView;
 		this.theModel = theModel;
+		
 
-		// this.theView.loggedInLayout();
+		setNewImageOrder(this.theModel.getNewCardOrder());
+		
 		this.theView.addLoginListener(new LoginListener());
 		this.theView.addCardListener(new CardListener());
 		this.theView.addExitListener(new ExitListener());
@@ -33,7 +36,16 @@ public class MemoryController {
 		this.theView.addHighScoreListener(new HighScoreListener());
 		this.theView.addRegisterButtonListener(new RegisterButtonListener());
 		this.theView.addRegisterButtonListener2(new RegisterButtonListener2());
-		//
+	}
+	public void setNewImageOrder(ArrayList<Card> newCardOrderList){
+		newOrderArray= new int[10];
+
+		
+		newOrderArray= new int[newCardOrderList.size()];
+		for (int i = 0; i < newCardOrderList.size(); i++) {
+			newOrderArray[i]=newCardOrderList.get(i).getId();
+		}
+		theView.setNewImageOrder(newOrderArray);
 	}
 
 	public void checkLogin(String name, ArrayList<User> users)
@@ -67,20 +79,13 @@ public class MemoryController {
 	}
 
 	private class CardListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent cl) {
-			//Card card1,card2;
-			
-
 			for (int i = 0; i < numberOfCards; i++) {
-
+				
 				if (cl.getActionCommand().equals("button" + i)) {
-
-					//System.out.println("pressed" + i);
-					//System.out.println(cl.getActionCommand().toString());
-					//theModel.checkIfPair(card1, card2)
-					//System.out.println(i);
+					
+					
 					if (everyOther == true) {
 						firstCard=i;
 						theModel.getCards().get(i).setFound(true);
@@ -95,8 +100,22 @@ public class MemoryController {
 					//System.out.println(bothDrawn);
 					//System.out.println(i);
 					
+					/*if(bothDrawn==2&&everyOther==true){
+						bothDrawn=0;
+						theModel.getCards().get(i).setFound(false);
+						theModel.getCards().get(firstCard).setFound(false);
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					}*/ 
+					
 					if(bothDrawn==2){
 						//theView.flipPair
+						
 						bothDrawn=0;
 						
 						if(theModel.checkIfPair(theModel.getCards().get(i), theModel.getCards().get(firstCard))==true){

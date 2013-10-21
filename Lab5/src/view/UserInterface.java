@@ -138,19 +138,19 @@ public class UserInterface extends JPanel {
 		faildLogin = new JLabel("LoginFaild");
 		test = new JLabel("LOREM IPSUM SHIT");
 		cred = new JLabel("Credits & Copyright 2013 | Kev, Pent");
-		// connecting array of imagesIcons to actuall images
+		// connecting array of imagesIcons to actual images
 		CardImage = new ImageIcon[numberOfCards + 1];
 		pairNumber = new int[2];
 
 		CardImage[0] = new ImageIcon("images/flags/se.png");
-		CardImage[1] = new ImageIcon("images/flags/se.png");
+		CardImage[1] = new ImageIcon("images/flags/uk.png");
 		CardImage[2] = new ImageIcon("images/flags/china.png");
-		CardImage[3] = new ImageIcon("images/flags/china.png");
-		CardImage[4] = new ImageIcon("images/flags/ger.png");
-		CardImage[5] = new ImageIcon("images/flags/ger.png");
+		CardImage[3] = new ImageIcon("images/flags/ger.png");
+		CardImage[4] = new ImageIcon("images/flags/usa.png");
+		CardImage[5] = new ImageIcon("images/flags/se.png");
 		CardImage[6] = new ImageIcon("images/flags/uk.png");
-		CardImage[7] = new ImageIcon("images/flags/uk.png");
-		CardImage[8] = new ImageIcon("images/flags/usa.png");
+		CardImage[7] = new ImageIcon("images/flags/china.png");
+		CardImage[8] = new ImageIcon("images/flags/ger.png");
 		CardImage[9] = new ImageIcon("images/flags/usa.png");
 		CardImage[10] = new ImageIcon("images/facedown.png");
 
@@ -270,6 +270,10 @@ public class UserInterface extends JPanel {
 	public void setPlayerName(String name){
 		playerName = name;
 	}
+	
+
+		
+	
 
 	public void flipImage(int buttonNr) {
 
@@ -287,7 +291,27 @@ public class UserInterface extends JPanel {
 			pairNumber[0] = buttonNr;
 			pairChecker = true;
 		}
+	}
+	
+	public void setNewImageOrder(int[] newCardOrderList){
+		ImageIcon tmp[] = new ImageIcon[10];
+		for (int i = 0; i < numberOfCards; i++) {
+			System.out.println(newCardOrderList[i]);
+			tmp[i]=CardImage[i];
+		}
 
+		CardImage[0] = tmp[newCardOrderList[0]];
+		CardImage[1] = tmp[newCardOrderList[1]];
+		CardImage[2] = tmp[newCardOrderList[2]];
+		CardImage[3] = tmp[newCardOrderList[3]];
+		CardImage[4] = tmp[newCardOrderList[4]];
+		CardImage[5] = tmp[newCardOrderList[5]];
+		CardImage[6] = tmp[newCardOrderList[6]];
+		CardImage[7] = tmp[newCardOrderList[7]];
+		CardImage[8] = tmp[newCardOrderList[8]];
+		CardImage[9] = tmp[newCardOrderList[9]];
+		repaint();
+		//CardImage[10] = new ImageIcon("images/facedown.png");
 	}
 
 	public void loggedInLayout() {

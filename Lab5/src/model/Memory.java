@@ -9,10 +9,11 @@ import java.util.*;
 
 public class Memory {
 	private int done;
-
+	private int numberOfCards=10;
+	
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
-
+	private ArrayList<Card> newOrder = new ArrayList<Card>();
 
 	public Memory() throws IOException, ClassNotFoundException {
 		reset();
@@ -64,18 +65,37 @@ public class Memory {
 	public void reset() throws IOException, ClassNotFoundException {
 		// Reset everything but the score
 		load("test.lst");
+		
 		int k=0;
 		for (int j = 0; j < 2; j++) {
 		for (int i = 0; i < 5; i++) {
 			
-			cards.add(new Card(k,i));//k goes from 0 to 9 for 10 cards
+			//cards.add(new Card(k,i));//k goes from 0 to 9 for 10 cards
 			cards.add(new Card(k,i));//And i goes from 0 to 4 (two times) for 10 cards
-			//System.out.println("k: "+k+" i:"+i);
+			System.out.println("k: "+k+" i:"+i);
 			k++;
 		}
 			
 		}
-
+		for (int i = 0; i < numberOfCards; i++) {
+			//System.out.println(cards.get(i).getPairId());
+		}
+		System.out.println("");
+		System.out.println("-----------------");
+		System.out.println("");
+		shuffleCards();
+		for (int i = 0; i < numberOfCards; i++) {
+			newOrder.add(cards.get(i));
+			System.out.println(cards.get(i).getId());
+		}
+		System.out.println("");
+		System.out.println("-----------------");
+		System.out.println("");
+		for (int i = 0; i < numberOfCards; i++) {
+			//System.out.println(cards.get(i).getPairId());
+		}
+		
+		
 	}
 
 
@@ -122,6 +142,15 @@ public class Memory {
 	}
 	public int getNoOfUsers(){
 		return users.size();
+
+	}
+	
+	public void shuffleCards(){
+		Collections.shuffle(cards);
+	}
+	
+	public ArrayList<Card> getNewCardOrder(){
+		return newOrder;
 
 	}
 

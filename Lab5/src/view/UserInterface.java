@@ -28,19 +28,37 @@ public class UserInterface extends JPanel {
 
 	// Menubar at the top
 	private JMenuBar menuBar;
-	private JMenuItem menuItem;
+	private JMenuItem menuExit, menuHighScore, menuRegister;
 	private JMenu menu;
+	
+	//Custom Dialog
+	private JDialog dialog;
 
 	public UserInterface() {
 		super();
 
 		// loading the panel
 		JFrame frame = new JFrame("Memory");
+		dialog = new JDialog(frame,"Click a button");  
+		
+		//Dialog
+	    dialog.setSize(300,130);
+        dialog.setLayout(new FlowLayout());
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(false);
+        
+		//Menubar
 		menuBar = new JMenuBar();
+		//MenuRow
 		menu = new JMenu("File");
 		menuBar.add(menu);
-		menuItem = new JMenuItem("Exit");
-		menu.add(menuItem);
+		//MenuItems
+		menuExit = new JMenuItem("Exit");
+		menuRegister = new JMenuItem("Register");
+		menuHighScore = new JMenuItem("HighScore");
+		menu.add(menuRegister);
+		menu.add(menuHighScore);
+		menu.add(menuExit);
 
 		frame.setJMenuBar(menuBar);
 
@@ -164,13 +182,25 @@ public class UserInterface extends JPanel {
 	public void addFlipListener(ActionListener fl) {
 		FlipButton.addActionListener(fl);
 	}
-	public void addExitListener(ActionListener el) {
-		menuItem.addActionListener(el);
+	public void addExitListener(ActionListener mel) { //Menu Exit Listener mel
+		menuExit.addActionListener(mel);
+	}
+	public void addRegisterListener(ActionListener mrl) { //Menu Register Listener mrl
+		menuRegister.addActionListener(mrl);
+	}
+	public void addHighScoreListener(ActionListener mhl) { //Menu HighScore Listener mhl
+		menuHighScore.addActionListener(mhl);
 	}
 
 	public String getLoginText() {
 		String tmp = username.getText();
 		return tmp;
+	}
+	public void displayHighScore(){
+		dialog.setVisible(true);
+	}
+	public void displayHighScore(int userId){
+		dialog.setVisible(true);
 	}
 
 	public void flipImage(int buttonNr) {

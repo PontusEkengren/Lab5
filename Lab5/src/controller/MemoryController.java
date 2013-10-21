@@ -23,6 +23,8 @@ public class MemoryController {
 		this.theView.addLoginListener(new LoginListener());
 		this.theView.addCardListener(new CardListener());
 		this.theView.addExitListener(new ExitListener());
+		this.theView.addRegisterListener(new RegisterListener());
+		this.theView.addHighScoreListener(new HighScoreListener());
 		//
 	}
 
@@ -78,6 +80,24 @@ public class MemoryController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);
+			
+		}
+		
+	}
+	private class RegisterListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+			
+		}
+		
+	}
+	private class HighScoreListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			theView.displayHighScore();
 			
 		}
 		

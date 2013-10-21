@@ -162,6 +162,12 @@ public class MemoryController {
 		public void actionPerformed(ActionEvent e) {
 			if (theView.getRegisterUsername() != null) {
 				theModel.addUser(theModel.getNoOfUsers() + 1, theView.getRegisterUsername(), 0);
+				try {
+					theModel.save("test.lst");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				theView.hideRegister();
 			} else {
 

@@ -16,15 +16,19 @@ public class UserInterface extends JPanel {
 	private int[] pairNumber;
 	private JLabel WelcomeLabel, statusLabel2, faildLogin, test, cred, rl_username;
 	private JTextField username, rt_username;
-	private JButton LoginButton, FlipButton, CardButton[];
+	private JButton LoginButton, RegisterButton, FlipButton, CardButton[], rb_register;
 	private ImageIcon CardImage[], faceup, facedown, current;
-	private JPanel cP, nP, sP, pP, northFL1, northFL2;
+	private JPanel cP, nP, sP, pP, northFL1, northFL2, rP;
+	private JTable highscore;
+	private JScrollPane scrollPane;
 
 	// Layouts
 	private BorderLayout bl;
 	private GridLayout gl;
 	private BoxLayout boxL;
 	private FlowLayout fL;
+	private SpringLayout sp;
+	private GridLayout registerLayout;
 
 	// Menubar at the top
 	private JMenuBar menuBar;
@@ -34,32 +38,57 @@ public class UserInterface extends JPanel {
 	//Custom Dialog
 	private JDialog dialog;
 	private JDialog register;
+	
+	//Player Info
+	String playerName = "";
+	int playerScore = 5;
+	private JLabel score, score_num;
 
 	public UserInterface() {
 		super();
-
+		//Player Info
+		score = new JLabel("Score: ");
+		score_num = new JLabel();
+		score_num.setText(String.valueOf(playerScore));
 		// loading the panel
 		JFrame frame = new JFrame("Memory");
-		dialog = new JDialog(frame,"Highscore");  
-		register = new JDialog(frame, "Register New User");
+		dialog = new JDialog(frame,"Highscore", Dialog.ModalityType.DOCUMENT_MODAL);  //3rd argument adds modality
+		register = new JDialog(frame, "Register New User", Dialog.ModalityType.DOCUMENT_MODAL);
+		String[] columnNames = {"ID", "Username", "Score"};
+		Object[][] data = {{new Integer(1), "Kevin", new Integer(playerScore)}};
+		
+		highscore = new JTable(data, columnNames);
+		scrollPane = new JScrollPane(highscore);
+		highscore.setFillsViewportHeight(true);
 		
 		//Dialog
 	    dialog.setSize(300,130);
         dialog.setLayout(new FlowLayout());
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(false);
+        dialog.add(highscore);
         
         //Register init
-        register.setSize(200,300);
-        register.setLayout(new GridLayout(2,2));
+        sp = new SpringLayout();
+        registerLayout = new GridLayout(2,2);
+        rP = new JPanel();
+        register.setSize(200,75);
+        //register.setLayout(sp);
         register.setLocationRelativeTo(this);
         register.setVisible(false);
         //Register buttons
-        rt_username = new JTextField();
-        rl_username = new JLabel();
-        register.add(rl_username);
-        register.add(rl_username);
-        
+        register.add(rP);
+        rP.setLayout(registerLayout);
+        rl_username = new JLabel("Username: ");
+        rt_username = new JTextField("username", 7);
+        rb_register = new JButton("Register");
+        rP.add(rl_username);
+        rl_username.setLabelFor(rt_username);
+        rP.add(rt_username);
+        rP.add(rb_register);
+        sp.putConstraint(SpringLayout.WEST, rt_username, 5, SpringLayout.EAST, rl_username);
+        //sP.makeCompactGrid(rP, 1, 2, 6, 6, 6, 6);
+
         
 		//Menubar
 		menuBar = new JMenuBar();
@@ -101,6 +130,7 @@ public class UserInterface extends JPanel {
 
 		// loading buttons and text
 		LoginButton = new JButton("Login");
+		RegisterButton = new JButton("Register");
 		FlipButton = new JButton("Flip Image");
 		username = new JTextField("Player Name");
 		WelcomeLabel = new JLabel("Welcome to Memory!");
@@ -154,6 +184,7 @@ public class UserInterface extends JPanel {
 		nP.add(northFL2); // Panel med FlowLayout
 		northFL2.add(username);
 		northFL2.add(LoginButton);
+		northFL2.add(RegisterButton);
 
 		// Center Panel Setup
 		// cP.add(FlipButton);
@@ -164,6 +195,9 @@ public class UserInterface extends JPanel {
 
 		// Sout Panel setup
 		sP.add(cred);
+		sP.add(score);
+		sP.add(score_num);
+		
 
 		// Old Stuff
 		/*
@@ -205,7 +239,12 @@ public class UserInterface extends JPanel {
 	public void addHighScoreListener(ActionListener mhl) { //Menu HighScore Listener mhl
 		menuHighScore.addActionListener(mhl);
 	}
-
+	public void addRegisterButtonListener(ActionListener rbl){ //Register Button Listener rbl
+		rb_register.addActionListener(rbl);
+	}
+	public void addRegisterButtonListener2(ActionListener rbl2){
+		RegisterButton.addActionListener(rbl2);
+	}
 	public String getLoginText() {
 		String tmp = username.getText();
 		return tmp;
@@ -218,6 +257,18 @@ public class UserInterface extends JPanel {
 	}
 	public void displayRegister(){
 		register.setVisible(true);
+	}
+	public String getRegisterUsername(){
+		return rt_username.getText();
+	}
+	public void hideRegister(){
+		register.setVisible(false);
+	}
+	public void setPlayerScore(int score){
+		playerScore += score;
+	}
+	public void setPlayerName(String name){
+		playerName = name;
 	}
 
 	public void flipImage(int buttonNr) {
@@ -245,6 +296,7 @@ public class UserInterface extends JPanel {
 		LoginButton.setVisible(false);
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
+		RegisterButton.setVisible(false);
 
 		for (int i = 0; i < numberOfCards; i++) {
 			CardButton[i].setVisible(true);

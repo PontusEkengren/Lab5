@@ -16,6 +16,10 @@ public class Memory {
 		reset();
 
 	}
+	public void addUser(int id, String username, int score){
+		User adding = new User(id, username, score);
+		users.add(adding);
+	}
 
 	public void save(String saveFile) throws IOException {
 		ObjectOutputStream oos = null;
@@ -79,6 +83,9 @@ public class Memory {
 
 	public ArrayList<User> getUsers() {
 		return users;
+	}
+	public int getNoOfUsers(){
+		return users.size();
 	}
 
 	public void loginButton(String inputText) {

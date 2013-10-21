@@ -115,14 +115,14 @@ public class Memory {
 	public ArrayList<User> getUsers() {
 		return users;
 	}
-<<<<<<< HEAD
+
 	
 	public ArrayList<Card> getCards() { // I know im sending the acutal array of cards and not a copy.. thats the point
 		return cards;
-=======
+	}
 	public int getNoOfUsers(){
 		return users.size();
->>>>>>> 8edc98548534cfefa1409a202176310ccf650b34
+
 	}
 
 	public void loginButton(String inputText) {

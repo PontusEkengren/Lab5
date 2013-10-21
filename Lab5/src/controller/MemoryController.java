@@ -76,7 +76,7 @@ public class MemoryController {
 			for (int i = 0; i < numberOfCards; i++) {
 
 				if (cl.getActionCommand().equals("button" + i)) {
-<<<<<<< HEAD
+
 					//System.out.println("pressed" + i);
 					//System.out.println(cl.getActionCommand().toString());
 					//theModel.checkIfPair(card1, card2)
@@ -116,11 +116,10 @@ public class MemoryController {
 					else{
 						theView.flipImage(i);
 					}
-=======
-					// System.out.println("pressed" + i);
+				// System.out.println("pressed" + i);
 					// System.out.println(cl.getActionCommand().toString());
-					theView.flipImage(i);// Want to send button number here
->>>>>>> 8edc98548534cfefa1409a202176310ccf650b34
+					//theView.flipImage(i);// Want to send button number here
+
 				}
 			}
 		}

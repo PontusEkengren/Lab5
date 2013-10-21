@@ -14,8 +14,8 @@ public class UserInterface extends JPanel {
 	// to check for pairs
 	private boolean pairChecker = false;
 	private int[] pairNumber;
-	private JLabel WelcomeLabel, statusLabel2, faildLogin, test, cred;
-	private JTextField username;
+	private JLabel WelcomeLabel, statusLabel2, faildLogin, test, cred, rl_username;
+	private JTextField username, rt_username;
 	private JButton LoginButton, FlipButton, CardButton[];
 	private ImageIcon CardImage[], faceup, facedown, current;
 	private JPanel cP, nP, sP, pP, northFL1, northFL2;
@@ -33,19 +33,33 @@ public class UserInterface extends JPanel {
 	
 	//Custom Dialog
 	private JDialog dialog;
+	private JDialog register;
 
 	public UserInterface() {
 		super();
 
 		// loading the panel
 		JFrame frame = new JFrame("Memory");
-		dialog = new JDialog(frame,"Click a button");  
+		dialog = new JDialog(frame,"Highscore");  
+		register = new JDialog(frame, "Register New User");
 		
 		//Dialog
 	    dialog.setSize(300,130);
         dialog.setLayout(new FlowLayout());
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(false);
+        
+        //Register init
+        register.setSize(200,300);
+        register.setLayout(new GridLayout(2,2));
+        register.setLocationRelativeTo(this);
+        register.setVisible(false);
+        //Register buttons
+        rt_username = new JTextField();
+        rl_username = new JLabel();
+        register.add(rl_username);
+        register.add(rl_username);
+        
         
 		//Menubar
 		menuBar = new JMenuBar();
@@ -201,6 +215,9 @@ public class UserInterface extends JPanel {
 	}
 	public void displayHighScore(int userId){
 		dialog.setVisible(true);
+	}
+	public void displayRegister(){
+		register.setVisible(true);
 	}
 
 	public void flipImage(int buttonNr) {

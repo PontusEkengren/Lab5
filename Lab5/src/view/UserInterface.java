@@ -262,86 +262,133 @@ public class UserInterface extends JPanel {
 	}
 
 	//***** Action Listeners
+	/**
+	 * 
+	 * @param ll
+	 */
 	public void addLoginListener(ActionListener ll) {
 		LoginButton.addActionListener(ll);
 	}
-
+	/**
+	 * 
+	 * @param fl
+	 */
 	public void addFlipListener(ActionListener fl) {
 		FlipButton.addActionListener(fl);
 	}
+	/**
+	 * 
+	 * @param mel
+	 */
 	public void addExitListener(ActionListener mel) { //Menu Exit Listener mel
 		menuExit.addActionListener(mel);
 	}
+	/**
+	 * 
+	 * @param mrl
+	 */
 	public void addRegisterListener(ActionListener mrl) { //Menu Register Listener mrl
 		menuRegister.addActionListener(mrl);
 	}
+	/**
+	 * 
+	 * @param mhl
+	 */
 	public void addHighScoreListener(ActionListener mhl) { //Menu HighScore Listener mhl
 		menuHighScore.addActionListener(mhl);
 	}
+	/**
+	 * 
+	 * @param rbl
+	 */
 	public void addRegisterButtonListener(ActionListener rbl){ //Register Button Listener rbl
 		rb_register.addActionListener(rbl);
 	}
+	/**
+	 * 
+	 * @param rbl2
+	 */
 	public void addRegisterButtonListener2(ActionListener rbl2){
 		RegisterButton.addActionListener(rbl2);
 	}
+	/**
+	 * 
+	 * @param mrl
+	 */
 	public void addResetListener(ActionListener mrl){
 		menuReset.addActionListener(mrl);
 	}
 	
 	
 	//*******************************************
-	public int getPlayerId(){
-		return playerId;
-	}
-	public int getPlayerScore(){
-		return personalBestScore;
-	}
-	public void setPlayerId(int id){
-		playerId = id;
-	}
-	public void setPlayerName(String name){
-		playerName = name;
-	}
-	public void setPlayerScore(int score){
-		personalBestScore = score;
-	}
+
+	/**
+	 * Sets the score of how many tries the player done in the south panel
+	 * @param score
+	 */
 	public void setPlayerScoreLabel(int score){
 		
 		playerScoreLabel.setText(Integer.toString(score));
 	}
+	/**
+	 * Sets the personalBestScore and updates the score on the south panel
+	 * @param best
+	 */
 	public void setPersonalBest(int best){
 		personalBestScore = best;
 		personalBestScoreLabel.setText(Integer.toString(personalBestScore));
 	}
 	//*******************************************
+	/**
+	 * returns the username from loginform
+	 * @return
+	 */
 	public String getLoginText() {
 		String tmp = username.getText();
 		return tmp;
 	}
+	/**
+	 * Displays a dialog window with the highscore table.
+	 * Sets visibility to true.
+	 * @param userId
+	 */
 	public void displayHighScore(){
 		dialog.setVisible(true);
 	}
-	public void displayHighScore(int userId){
-		dialog.setVisible(true);
-	}
+	/**
+	 * Sets registers visibility to true
+	 */
 	public void displayRegister(){
 		register.setVisible(true);
 	}
+	/**
+	 * Returns the text from the textfield in the register field.
+	 * @return
+	 */
 	public String getRegisterUsername(){
 		return rt_username.getText();
 	}
+	/**
+	 * Sets the register visibility to false
+	 */
 	public void hideRegister(){
 		register.setVisible(false);
 	}
+	/**
+	 * This method is used to generate error messages which will appear as "popups"
+	 * The argument the method takes is the message that will be displayed for the user.
+	 * @param error
+	 */
 	public void createError(String error){
 		JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 	}
+	/**
+	 * This method is used to generate general message to the user which will appear as a popup for the user.
+	 * The argument is the message which will be shown.
+	 * @param message
+	 */
 	public void createMessage(String message){
 		JOptionPane.showMessageDialog(null, message);
-	}
-	public void displayPlayerScore(String score){
-		playerScoreLabel = new JLabel(score);
-		sP.add(playerScoreLabel);
 	}
 
 
@@ -388,6 +435,10 @@ public class UserInterface extends JPanel {
 		//CardImage[10] = new ImageIcon("images/facedown.png");
 	}
 
+	/**
+	 * This layout will append when a user is signed in.
+	 * If you want to remove a button etc, set visible false here.
+	 */
 	public void loggedInLayout() {
 		statusLabel2.setVisible(true);
 		WelcomeLabel.setVisible(false);
@@ -403,7 +454,9 @@ public class UserInterface extends JPanel {
 			CardButton[i].setVisible(true);
 		}
 	}
-
+	/**
+	 * Method to display error message if logged in fails
+	 */
 	public void loggedInFaild() {
 		faildLogin.setVisible(true);
 
@@ -435,8 +488,6 @@ public class UserInterface extends JPanel {
 	}
 
 	public void flipPair(int buttonNr) {
-
-
 			CardButton[buttonNr].setIcon(CardImage[buttonNr]);
 			bothDrawn=0;
 			repaint();

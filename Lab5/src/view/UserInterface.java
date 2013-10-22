@@ -251,7 +251,10 @@ public class UserInterface extends JPanel {
 		frame.setVisible(true);
 
 	}
-
+	/**
+	 * 
+	 * @param cl
+	 */
 	public void addCardListener(ActionListener cl) {
 
 		for (int i = 0; i < numberOfCards; i++) {
@@ -391,7 +394,11 @@ public class UserInterface extends JPanel {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
-
+	/**
+	 * set the new image for the button when clicked on
+	 * if the two images are a match, they wont flip back.
+	 * @param buttonNr
+	 */
 	public void flipImage(int buttonNr) {
 
 		CardButton[buttonNr].setIcon(CardImage[buttonNr]);
@@ -409,7 +416,11 @@ public class UserInterface extends JPanel {
 			pairChecker = true;
 		}
 	}
-	
+	/**
+	 * The Scrambled order from Memory is sent here to correspond
+	 * the same order for the images.
+	 * @param newCardOrderList
+	 */
 	public void setNewImageOrder(int[] newCardOrderList){
 		ImageIcon tmp[] = new ImageIcon[numberOfCards];
 		for (int i = 0; i < numberOfCards; i++) {
@@ -462,7 +473,10 @@ public class UserInterface extends JPanel {
 
 		timerFaildLogin.start();
 	}
-	
+	/**
+	 * If two cards are drawn (face-up)
+	 * @return
+	 */
 	public boolean checkIfBothDrawn(){
 		if(bothDrawn>1)
 			return true;
@@ -479,14 +493,18 @@ public class UserInterface extends JPanel {
 			bothDrawn=0;
 		}
 	}
-
+	/**
+	 */
 	private class TimerListenerLogin implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			faildLogin.setVisible(false);
 			timerFaildLogin.stop();
 		}
 	}
-
+	/**
+	 * if found-pair occurs, this happens instead of flipImage
+	 * @param buttonNr
+	 */
 	public void flipPair(int buttonNr) {
 			CardButton[buttonNr].setIcon(CardImage[buttonNr]);
 			bothDrawn=0;

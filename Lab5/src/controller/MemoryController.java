@@ -74,9 +74,9 @@ public class MemoryController {
 				
 				getActiveId(users.get(i).getId());
 				//theView.setPersonalBest(theModel.getUsers().get(activeId).getHighScore());
-				System.out.println("Error 403 ID: " + activeId);
-				System.out.println("Error 404: " + theModel.getUsers().get(activeId).getName());
-				System.out.println("Error 405: " + theModel.getUsers().get(activeId).getHighScore());
+				//System.out.println("Error 403 ID: " + activeId);
+				//System.out.println("Error 404: " + theModel.getUsers().get(activeId).getName());
+				//System.out.println("Error 405: " + theModel.getUsers().get(activeId).getHighScore());
 				theView.setPersonalBest(theModel.getUsers().get(activeId).getHighScore());
 				/*this.theView.displayPlayerScore(Integer.toString(users.get(i).getScore()));
 				
@@ -151,10 +151,11 @@ public class MemoryController {
 							theView.flipPair(i);
 							if(theModel.checkIfDone()==true)
 							{
-								theView.createMessage("Congrats you won and gained 1 point to your highscore!");
+								theView.createMessage("Congrats you won!");
 								if(activeScore<theModel.getUsers().get(activeId).getHighScore()){//if activeScore is less than last highscore
 									theModel.getUsers().get(activeId).setHighScore(activeScore);//set new highscore
 									theView.setPersonalBest(theModel.getUsers().get(activeId).getHighScore());
+									theView.createMessage("You beat your previous best score!");
 								}
 								try {
 									theModel.save("test.lst");

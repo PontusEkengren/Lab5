@@ -8,6 +8,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class UserInterface extends JPanel {
 
+	ClassLoader cl = this.getClass().getClassLoader();
 	private Timer timerCard, timerFaildLogin;
 	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
 	private int numberOfCards = 30;
@@ -112,7 +113,7 @@ public class UserInterface extends JPanel {
 		menuHighScore = new JMenuItem("HighScore");
 		menuReset = new JMenuItem("Reset");
 		menuReset.setVisible(false);
-		menu.add(menuReset);
+		//menu.add(menuReset);
 		menu.add(menuRegister);
 		menu.add(menuHighScore);
 		menu.add(menuExit);
@@ -156,37 +157,37 @@ public class UserInterface extends JPanel {
 		CardImage = new ImageIcon[numberOfCards + 1];
 		pairNumber = new int[2];
 
-		CardImage[0] = new ImageIcon("images/flags/se.png");
-		CardImage[1] = new ImageIcon("images/flags/uk.png");
-		CardImage[2] = new ImageIcon("images/flags/china.png");
-		CardImage[3] = new ImageIcon("images/flags/ger.png");
-		CardImage[4] = new ImageIcon("images/flags/usa.png");
-		CardImage[5] = new ImageIcon("images/flags/alb.png");
-		CardImage[6] = new ImageIcon("images/flags/bra.png");
-		CardImage[7] = new ImageIcon("images/flags/can.png");
-		CardImage[8] = new ImageIcon("images/flags/ita.png");
-		CardImage[9] = new ImageIcon("images/flags/kor.png");
-		CardImage[10] = new ImageIcon("images/flags/nor.png");
-		CardImage[11] = new ImageIcon("images/flags/por.png");
-		CardImage[12] = new ImageIcon("images/flags/rus.png");
-		CardImage[13] = new ImageIcon("images/flags/tur.png");
-		CardImage[14] = new ImageIcon("images/flags/un.png");
-		CardImage[15] = new ImageIcon("images/flags/se.png");
-		CardImage[16] = new ImageIcon("images/flags/uk.png");
-		CardImage[17] = new ImageIcon("images/flags/china.png");
-		CardImage[18] = new ImageIcon("images/flags/ger.png");
-		CardImage[19] = new ImageIcon("images/flags/usa.png");
-		CardImage[20] = new ImageIcon("images/flags/alb.png");
-		CardImage[21] = new ImageIcon("images/flags/bra.png");
-		CardImage[22] = new ImageIcon("images/flags/can.png");
-		CardImage[23] = new ImageIcon("images/flags/ita.png");
-		CardImage[24] = new ImageIcon("images/flags/kor.png");
-		CardImage[25] = new ImageIcon("images/flags/nor.png");
-		CardImage[26] = new ImageIcon("images/flags/por.png");
-		CardImage[27] = new ImageIcon("images/flags/rus.png");
-		CardImage[28] = new ImageIcon("images/flags/tur.png");
-		CardImage[29] = new ImageIcon("images/flags/un.png");
-		CardImage[30] = new ImageIcon("images/facedown.png");
+		CardImage[0] = new ImageIcon(cl.getResource("images/flags/se.png"));
+		CardImage[1] = new ImageIcon(cl.getResource("images/flags/uk.png"));
+		CardImage[2] = new ImageIcon(cl.getResource("images/flags/china.png"));
+		CardImage[3] = new ImageIcon(cl.getResource("images/flags/ger.png"));
+		CardImage[4] = new ImageIcon(cl.getResource("images/flags/usa.png"));
+		CardImage[5] = new ImageIcon(cl.getResource("images/flags/alb.png"));
+		CardImage[6] = new ImageIcon(cl.getResource("images/flags/bra.png"));
+		CardImage[7] = new ImageIcon(cl.getResource("images/flags/can.png"));
+		CardImage[8] = new ImageIcon(cl.getResource("images/flags/ita.png"));
+		CardImage[9] = new ImageIcon(cl.getResource("images/flags/kor.png"));
+		CardImage[10] = new ImageIcon(cl.getResource("images/flags/nor.png"));
+		CardImage[11] = new ImageIcon(cl.getResource("images/flags/por.png"));
+		CardImage[12] = new ImageIcon(cl.getResource("images/flags/rus.png"));
+		CardImage[13] = new ImageIcon(cl.getResource("images/flags/tur.png"));
+		CardImage[14] = new ImageIcon(cl.getResource("images/flags/un.png"));
+		CardImage[15] = new ImageIcon(cl.getResource("images/flags/se.png"));
+		CardImage[16] = new ImageIcon(cl.getResource("images/flags/uk.png"));
+		CardImage[17] = new ImageIcon(cl.getResource("images/flags/china.png"));
+		CardImage[18] = new ImageIcon(cl.getResource("images/flags/ger.png"));
+		CardImage[19] = new ImageIcon(cl.getResource("images/flags/usa.png"));
+		CardImage[20] = new ImageIcon(cl.getResource("images/flags/alb.png"));
+		CardImage[21] = new ImageIcon(cl.getResource("images/flags/bra.png"));
+		CardImage[22] = new ImageIcon(cl.getResource("images/flags/can.png"));
+		CardImage[23] = new ImageIcon(cl.getResource("images/flags/ita.png"));
+		CardImage[24] = new ImageIcon(cl.getResource("images/flags/kor.png"));
+		CardImage[25] = new ImageIcon(cl.getResource("images/flags/nor.png"));
+		CardImage[26] = new ImageIcon(cl.getResource("images/flags/por.png"));
+		CardImage[27] = new ImageIcon(cl.getResource("images/flags/rus.png"));
+		CardImage[28] = new ImageIcon(cl.getResource("images/flags/tur.png"));
+		CardImage[29] = new ImageIcon(cl.getResource("images/flags/un.png"));
+		CardImage[30] = new ImageIcon(cl.getResource("images/facedown.png"));
 
 		// intilizing buttons to images
 
@@ -395,7 +396,8 @@ public class UserInterface extends JPanel {
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
 		RegisterButton.setVisible(false);
-		menuReset.setVisible(true);
+		menuReset.setVisible(false);
+		menuRegister.setVisible(false);
 
 		for (int i = 0; i < numberOfCards; i++) {
 			CardButton[i].setVisible(true);

@@ -3,13 +3,16 @@ package model;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 public class Memory {
 	//private int done;
 	private int numberOfCards=30;
+	
 	
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
@@ -24,9 +27,12 @@ public class Memory {
 	}
 
 	public void save(String saveFile) throws IOException {
+		//ClassLoader cl = this.getClass().getClassLoader();
 		ObjectOutputStream oos = null;
 		try {
 			FileOutputStream fout = new FileOutputStream(saveFile);
+			//FileOutputStream fout = new cl.getResourceAsStream(saveFile);
+			//OutputStream fout =  cl.getResourceAsStream(saveFile);
 			oos = new ObjectOutputStream(fout);
 
 			oos.writeObject(users);
@@ -43,13 +49,13 @@ public class Memory {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void load(String loadFile) throws ClassNotFoundException,
-			IOException {
-
+	public void load(String loadFile) throws ClassNotFoundException, IOException {
+		//ClassLoader cl = this.getClass().getClassLoader();
 		ObjectInputStream ois = null;
 
 		try {
 			FileInputStream fin = new FileInputStream(loadFile);
+			//InputStream fin = cl.getResourceAsStream(loadFile);
 			ois = new ObjectInputStream(fin);
 
 			users = (ArrayList<User>) ois.readObject();
@@ -92,7 +98,7 @@ public class Memory {
 		//System.out.println("-----------------");
 		//System.out.println("");
 		for (int i = 0; i < numberOfCards; i++) {
-			System.out.println("nr: " + i +  ", " + cards.get(i).getPairId());
+			//System.out.println("nr: " + i +  ", " + cards.get(i).getPairId());
 		} 
 		
 		

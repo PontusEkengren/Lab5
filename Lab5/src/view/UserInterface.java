@@ -44,24 +44,29 @@ public class UserInterface extends JPanel {
 	//Player Info
 	String playerName = "";
 	int playerId;
-	int playerScore = 0;
+	private int personalBestScore = 101;
 	int playerTries = 0;
-	private JLabel score, score_num, tries;
-	private JLabel playerScore_;
+	private JLabel scoreLabel, personalBestLabel;
+	private JLabel playerScoreLabel, personalBestScoreLabel;
+	
 
 	public UserInterface() {
 		super();
+		
 		//Player Info
-		score = new JLabel("Score: ");
-		tries = new JLabel("Tries: ");
-		score_num = new JLabel();
-		score_num.setText(String.valueOf(playerScore));
+		scoreLabel = new JLabel("Score: ");
+		personalBestLabel = new JLabel("Personal Best: ");
+		//personalBestLabel = new JLabel("0");
+		personalBestScoreLabel = new JLabel("");
+		personalBestScoreLabel.setText(Integer.toString(101));
+		playerScoreLabel = new JLabel("0");
+		
 		// loading the panel
 		JFrame frame = new JFrame("Memory");
 		dialog = new JDialog(frame,"Highscore", Dialog.ModalityType.DOCUMENT_MODAL);  //3rd argument adds modality
 		register = new JDialog(frame, "Register New User", Dialog.ModalityType.DOCUMENT_MODAL);
 		String[] columnNames = {"ID", "Username", "Score"};
-		Object[][] data = {{new Integer(1), "Kevin", new Integer(playerScore)}};
+		Object[][] data = {{new Integer(1), "Kevin", new Integer(personalBestScore)}};
 		
 		highscore = new JTable(data, columnNames);
 		scrollPane = new JScrollPane(highscore);
@@ -106,6 +111,7 @@ public class UserInterface extends JPanel {
 		menuRegister = new JMenuItem("Register");
 		menuHighScore = new JMenuItem("HighScore");
 		menuReset = new JMenuItem("Reset");
+		menuReset.setVisible(false);
 		menu.add(menuReset);
 		menu.add(menuRegister);
 		menu.add(menuHighScore);
@@ -223,10 +229,11 @@ public class UserInterface extends JPanel {
 
 		// Sout Panel setup
 		//sP.add(cred);
-		sP.add(tries);
+		sP.add(personalBestLabel);
+		sP.add(personalBestScoreLabel);
 		
-		sP.add(score);
-		sP.add(score_num);
+		sP.add(scoreLabel);
+		sP.add(playerScoreLabel);
 		
 
 		// Old Stuff
@@ -286,7 +293,7 @@ public class UserInterface extends JPanel {
 		return playerId;
 	}
 	public int getPlayerScore(){
-		return playerScore;
+		return personalBestScore;
 	}
 	public void setPlayerId(int id){
 		playerId = id;
@@ -295,10 +302,15 @@ public class UserInterface extends JPanel {
 		playerName = name;
 	}
 	public void setPlayerScore(int score){
-		playerScore = score;
+		personalBestScore = score;
 	}
 	public void setPlayerScoreLabel(int score){
-		playerScore_.setText(Integer.toString(score));
+		
+		playerScoreLabel.setText(Integer.toString(score));
+	}
+	public void setPersonalBest(int best){
+		personalBestScore = best;
+		personalBestScoreLabel.setText(Integer.toString(personalBestScore));
 	}
 	//*******************************************
 	public String getLoginText() {
@@ -327,8 +339,8 @@ public class UserInterface extends JPanel {
 		JOptionPane.showMessageDialog(null, message);
 	}
 	public void displayPlayerScore(String score){
-		playerScore_ = new JLabel(score);
-		sP.add(playerScore_);
+		playerScoreLabel = new JLabel(score);
+		sP.add(playerScoreLabel);
 	}
 
 
@@ -383,6 +395,7 @@ public class UserInterface extends JPanel {
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
 		RegisterButton.setVisible(false);
+		menuReset.setVisible(true);
 
 		for (int i = 0; i < numberOfCards; i++) {
 			CardButton[i].setVisible(true);

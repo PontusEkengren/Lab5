@@ -21,6 +21,9 @@ public class MemoryController {
 	private Memory theModel;
 	private UserInterface theView;
 	
+	//Active Player Stuff
+	int activeId;
+	int activeScore=0;
 
 	public MemoryController(UserInterface theView, Memory theModel) {
 		this.theView = theView;
@@ -38,6 +41,9 @@ public class MemoryController {
 		this.theView.addRegisterButtonListener2(new RegisterButtonListener2());
 
 	}
+	public void setNewHighScore(int id, int highscore){
+		this.theModel.getUsers().get(id).setHighScore(highscore);
+	}
 	public void setNewImageOrder(ArrayList<Card> newCardOrderList){
 		newOrderArray= new int[10];
 
@@ -52,7 +58,9 @@ public class MemoryController {
 		//
 
 	}
-
+	public void getActiveId(int id){
+		activeId = id-1;
+	}
 	public void checkLogin(String name, ArrayList<User> users)
 			throws IOException {
 		boolean found = false;
@@ -62,11 +70,19 @@ public class MemoryController {
 			// System.out.println(users.get(i).getName());
 			if (name.equals(users.get(i).getName())) {
 				this.theView.loggedInLayout();
-				this.theView.displayPlayerScore(Integer.toString(users.get(i).getScore()));
+				
+				
+				getActiveId(users.get(i).getId());
+				//theView.setPersonalBest(theModel.getUsers().get(activeId).getHighScore());
+				System.out.println("Error 403 ID: " + activeId);
+				System.out.println("Error 404: " + theModel.getUsers().get(activeId).getName());
+				System.out.println("Error 405: " + theModel.getUsers().get(activeId).getHighScore());
+				theView.setPersonalBest(theModel.getUsers().get(activeId).getHighScore());
+				/*this.theView.displayPlayerScore(Integer.toString(users.get(i).getScore()));
 				
 				this.theView.setPlayerId(users.get(i).getId());
 				this.theView.setPlayerName(users.get(i).getName());
-				this.theView.setPlayerScore(users.get(i).getScore());
+				this.theView.setPlayerScore(users.get(i).getScore());*/
 				found = true;
 				// this.theView.repaint();
 			}
@@ -126,7 +142,8 @@ public class MemoryController {
 					
 					if(bothDrawn==2){
 						//theView.flipPair
-						
+						activeScore++; //Just like golf you want as few of these as possible
+						theView.setPlayerScoreLabel(activeScore);
 						bothDrawn=0;
 						
 						if(theModel.checkIfPair(theModel.getCards().get(i), theModel.getCards().get(firstCard))==true){
@@ -135,8 +152,17 @@ public class MemoryController {
 							if(theModel.checkIfDone()==true)
 							{
 								theView.createMessage("Congrats you won and gained 1 point to your highscore!");
-								//theModel.addScore(theView.getPlayerId());
-								//theView.setPlayerScoreLabel(theView.getPlayerScore()+1);
+								if(activeScore<theModel.getUsers().get(activeId).getHighScore()){//if activeScore is less than last highscore
+									theModel.getUsers().get(activeId).setHighScore(activeScore);//set new highscore
+									theView.setPersonalBest(theModel.getUsers().get(activeId).getHighScore());
+								}
+								try {
+									theModel.save("test.lst");
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
 							}
 						}
 						else{
@@ -193,6 +219,7 @@ public class MemoryController {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				theModel.reset();
+				theView.repaint();
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

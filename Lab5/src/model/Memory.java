@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Memory {
-	private int done;
+	//private int done;
 	private int numberOfCards=30;
 	
 	private ArrayList<User> users = new ArrayList<User>();
@@ -92,8 +92,8 @@ public class Memory {
 		//System.out.println("-----------------");
 		//System.out.println("");
 		for (int i = 0; i < numberOfCards; i++) {
-			//System.out.println(cards.get(i).getPairId());
-		}
+			System.out.println("nr: " + i +  ", " + cards.get(i).getPairId());
+		} 
 		
 		
 	}
@@ -159,11 +159,11 @@ public class Memory {
 	public ArrayList<Card> getNewCardOrder(){
 		return newOrder;
 	}
-
+/*
 	public void addScore(int id){
 		users.get(id).addScore();
 
-	}
+	}*/
 
 	public void loginButton(String inputText) {
 

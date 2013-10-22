@@ -332,7 +332,7 @@ public class UserInterface extends JPanel {
 	public void setNewImageOrder(int[] newCardOrderList){
 		ImageIcon tmp[] = new ImageIcon[10];
 		for (int i = 0; i < numberOfCards; i++) {
-			System.out.println(newCardOrderList[i]);
+			//System.out.println(newCardOrderList[i]);
 			tmp[i]=CardImage[i];
 		}
 

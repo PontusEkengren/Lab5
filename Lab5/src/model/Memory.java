@@ -72,7 +72,7 @@ public class Memory {
 			
 			//cards.add(new Card(k,i));//k goes from 0 to 9 for 10 cards
 			cards.add(new Card(k,i));//And i goes from 0 to 4 (two times) for 10 cards
-			System.out.println("k: "+k+" i:"+i);
+			//System.out.println("k: "+k+" i:"+i);
 			k++;
 		}
 			
@@ -80,17 +80,17 @@ public class Memory {
 		for (int i = 0; i < numberOfCards; i++) {
 			//System.out.println(cards.get(i).getPairId());
 		}
-		System.out.println("");
-		System.out.println("-----------------");
-		System.out.println("");
+		//System.out.println("");
+		//System.out.println("-----------------");
+		//System.out.println("");
 		shuffleCards();
 		for (int i = 0; i < numberOfCards; i++) {
 			newOrder.add(cards.get(i));
-			System.out.println(cards.get(i).getId());
+			//System.out.println(cards.get(i).getId());
 		}
-		System.out.println("");
-		System.out.println("-----------------");
-		System.out.println("");
+		//System.out.println("");
+		//System.out.println("-----------------");
+		//System.out.println("");
 		for (int i = 0; i < numberOfCards; i++) {
 			//System.out.println(cards.get(i).getPairId());
 		}
@@ -113,15 +113,12 @@ public class Memory {
 	}
 
 	public boolean checkIfDone() {
-		
-		for (int i = 0; i < (cards.size()/4); i++) {
+		int numberOfFound=0;
+		for (int i = 0; i < (cards.size()); i++) {
 			if(cards.get(i).getFound()){
-				done++;
-				//System.out.println("done: "+done);
-				//System.out.println("cards size: "+cards.size());
-				if(done==cards.size()){
+				numberOfFound++;
+				if(numberOfFound==cards.size())
 					return true;
-				}	
 			}
 		}
 		return false;

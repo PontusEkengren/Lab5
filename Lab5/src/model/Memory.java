@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Memory {
 	private int done;
-	private int numberOfCards=10;
+	private int numberOfCards=30;
 	
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
@@ -68,7 +68,7 @@ public class Memory {
 		
 		int k=0;
 		for (int j = 0; j < 2; j++) {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < numberOfCards/2; i++) {
 			
 			//cards.add(new Card(k,i));//k goes from 0 to 9 for 10 cards
 			cards.add(new Card(k,i));//And i goes from 0 to 4 (two times) for 10 cards

@@ -13,7 +13,7 @@ import model.User;
 
 public class MemoryController {
 
-	private int numberOfCards = 10;
+	private int numberOfCards = 30;
 	private int firstCard=-1; // To check if both of the cards have been drawn
 	private int bothDrawn=0;
 	private boolean everyOther=true;

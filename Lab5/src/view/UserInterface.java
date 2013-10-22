@@ -10,7 +10,8 @@ public class UserInterface extends JPanel {
 
 	private Timer timerCard, timerFaildLogin;
 	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
-	private int numberOfCards = 10;
+	private int numberOfCards = 30;
+	
 	private int bothDrawn=0;
 	// to check for pairs
 	private boolean pairChecker = false;
@@ -154,18 +155,38 @@ public class UserInterface extends JPanel {
 		CardImage[2] = new ImageIcon("images/flags/china.png");
 		CardImage[3] = new ImageIcon("images/flags/ger.png");
 		CardImage[4] = new ImageIcon("images/flags/usa.png");
-		CardImage[5] = new ImageIcon("images/flags/se.png");
-		CardImage[6] = new ImageIcon("images/flags/uk.png");
-		CardImage[7] = new ImageIcon("images/flags/china.png");
-		CardImage[8] = new ImageIcon("images/flags/ger.png");
-		CardImage[9] = new ImageIcon("images/flags/usa.png");
-		CardImage[10] = new ImageIcon("images/facedown.png");
+		CardImage[5] = new ImageIcon("images/flags/alb.png");
+		CardImage[6] = new ImageIcon("images/flags/bra.png");
+		CardImage[7] = new ImageIcon("images/flags/can.png");
+		CardImage[8] = new ImageIcon("images/flags/ita.png");
+		CardImage[9] = new ImageIcon("images/flags/kor.png");
+		CardImage[10] = new ImageIcon("images/flags/nor.png");
+		CardImage[11] = new ImageIcon("images/flags/por.png");
+		CardImage[12] = new ImageIcon("images/flags/rus.png");
+		CardImage[13] = new ImageIcon("images/flags/tur.png");
+		CardImage[14] = new ImageIcon("images/flags/un.png");
+		CardImage[15] = new ImageIcon("images/flags/se.png");
+		CardImage[16] = new ImageIcon("images/flags/uk.png");
+		CardImage[17] = new ImageIcon("images/flags/china.png");
+		CardImage[18] = new ImageIcon("images/flags/ger.png");
+		CardImage[19] = new ImageIcon("images/flags/usa.png");
+		CardImage[20] = new ImageIcon("images/flags/alb.png");
+		CardImage[21] = new ImageIcon("images/flags/bra.png");
+		CardImage[22] = new ImageIcon("images/flags/can.png");
+		CardImage[23] = new ImageIcon("images/flags/ita.png");
+		CardImage[24] = new ImageIcon("images/flags/kor.png");
+		CardImage[25] = new ImageIcon("images/flags/nor.png");
+		CardImage[26] = new ImageIcon("images/flags/por.png");
+		CardImage[27] = new ImageIcon("images/flags/rus.png");
+		CardImage[28] = new ImageIcon("images/flags/tur.png");
+		CardImage[29] = new ImageIcon("images/flags/un.png");
+		CardImage[30] = new ImageIcon("images/facedown.png");
 
 		// intilizing buttons to images
 
 		CardButton = new JButton[numberOfCards + 1];
 		for (int i = 0; i < numberOfCards; i++) {
-			this.add(CardButton[i] = new JButton(CardImage[10]));
+			this.add(CardButton[i] = new JButton(CardImage[numberOfCards]));
 			CardButton[i].setVisible(false);
 		}
 
@@ -218,7 +239,7 @@ public class UserInterface extends JPanel {
 		// adding it all the ingredients the frame
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(720, 600)); // New Framesize
+		frame.setSize(new Dimension(720, 680)); // New Framesize
 		frame.setVisible(true);
 
 	}
@@ -330,12 +351,15 @@ public class UserInterface extends JPanel {
 	}
 	
 	public void setNewImageOrder(int[] newCardOrderList){
-		ImageIcon tmp[] = new ImageIcon[10];
+		ImageIcon tmp[] = new ImageIcon[numberOfCards];
 		for (int i = 0; i < numberOfCards; i++) {
 			//System.out.println(newCardOrderList[i]);
 			tmp[i]=CardImage[i];
 		}
-
+		for (int i = 0; i < numberOfCards; i++) {
+			CardImage[i] = tmp[newCardOrderList[i]];
+		}
+		/*
 		CardImage[0] = tmp[newCardOrderList[0]];
 		CardImage[1] = tmp[newCardOrderList[1]];
 		CardImage[2] = tmp[newCardOrderList[2]];
@@ -346,6 +370,7 @@ public class UserInterface extends JPanel {
 		CardImage[7] = tmp[newCardOrderList[7]];
 		CardImage[8] = tmp[newCardOrderList[8]];
 		CardImage[9] = tmp[newCardOrderList[9]];
+		*/
 		repaint();
 		//CardImage[10] = new ImageIcon("images/facedown.png");
 	}
@@ -380,8 +405,8 @@ public class UserInterface extends JPanel {
 	private class TimerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			timerCard.stop();
-			CardButton[pairNumber[0]].setIcon(CardImage[10]);
-			CardButton[pairNumber[1]].setIcon(CardImage[10]);
+			CardButton[pairNumber[0]].setIcon(CardImage[numberOfCards]);
+			CardButton[pairNumber[1]].setIcon(CardImage[numberOfCards]);
 			repaint();
 			bothDrawn=0;
 		}

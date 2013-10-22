@@ -92,7 +92,7 @@ public class Memory {
 		//System.out.println("-----------------");
 		//System.out.println("");
 		for (int i = 0; i < numberOfCards; i++) {
-			//System.out.println("nr: " + i +  ", " + cards.get(i).getPairId());
+			System.out.println("nr: " + i +  ", " + cards.get(i).getPairId());
 		} 
 		
 		

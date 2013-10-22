@@ -2,8 +2,11 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
+
+import model.Card;
 
 @SuppressWarnings("serial")
 public class UserInterface extends JPanel {
@@ -40,6 +43,9 @@ public class UserInterface extends JPanel {
 	//Custom Dialog
 	private JDialog dialog;
 	private JDialog register;
+	//private Object[][] data;
+	private ArrayList<String> columnNames = new ArrayList<String>();
+	private ArrayList<List> data = new ArrayList<List>();
 	
 	//Player Info
 	String playerName = "";
@@ -65,19 +71,24 @@ public class UserInterface extends JPanel {
 		JFrame frame = new JFrame("Memory");
 		dialog = new JDialog(frame,"Highscore", Dialog.ModalityType.DOCUMENT_MODAL);  //3rd argument adds modality
 		register = new JDialog(frame, "Register New User", Dialog.ModalityType.DOCUMENT_MODAL);
-		String[] columnNames = {"ID", "Username", "Score"};
-		Object[][] data = {{new Integer(1), "Kevin", new Integer(personalBestScore)}};
 		
-		highscore = new JTable(data, columnNames);
+		//HighScore Table
+		//String[] columnNames = {"ID", "Username", "Score"};
+		
+		//highScoreBuilder();
+		
+		//highscore = new JTable(data, columnNames);
 		scrollPane = new JScrollPane(highscore);
+		//scrollPane.setOpaque(true); 
 		highscore.setFillsViewportHeight(true);
 		
 		//Dialog
-	    dialog.setSize(300,130);
+	    dialog.setSize(500,475);
         dialog.setLayout(new FlowLayout());
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(false);
-        dialog.add(highscore);
+        dialog.add(scrollPane);
+        //dialog.add(highscore);
         
         //Register init
         sp = new SpringLayout();
@@ -286,7 +297,10 @@ public class UserInterface extends JPanel {
 	public void addResetListener(ActionListener mrl){
 		menuReset.addActionListener(mrl);
 	}
-	
+	//*********** HighScore *********************
+	public void highScoreBuilder(int id, String name, int score){
+		//data.add(id);
+	}
 	
 	//*******************************************
 	public int getPlayerId(){
@@ -395,7 +409,8 @@ public class UserInterface extends JPanel {
 		FlipButton.setVisible(true);
 		faildLogin.setVisible(false);
 		RegisterButton.setVisible(false);
-		menuReset.setVisible(true);
+		menuRegister.setVisible(false);
+		//menuReset.setVisible(true);
 
 		for (int i = 0; i < numberOfCards; i++) {
 			CardButton[i].setVisible(true);

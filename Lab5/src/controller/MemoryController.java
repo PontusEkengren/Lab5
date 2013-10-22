@@ -39,6 +39,8 @@ public class MemoryController {
 		this.theView.addHighScoreListener(new HighScoreListener());
 		this.theView.addRegisterButtonListener(new RegisterButtonListener());
 		this.theView.addRegisterButtonListener2(new RegisterButtonListener2());
+		
+		//this.theView.highScoreBuilder(1, "kev", 9999);
 
 	}
 	public void setNewHighScore(int id, int highscore){
@@ -219,6 +221,7 @@ public class MemoryController {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				theModel.reset();
+				setNewImageOrder(theModel.getNewCardOrder());
 				theView.repaint();
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block

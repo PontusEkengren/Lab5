@@ -239,7 +239,7 @@ public class UserInterface extends JPanel {
 		// adding it all the ingredients the frame
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(680, 680)); // New Framesize
+		frame.setSize(new Dimension(800, 800)); // New Framesize
 		frame.setVisible(true);
 
 	}

@@ -11,6 +11,7 @@ public class UserInterface extends JPanel {
 	private Timer timerCard, timerFaildLogin;
 	private int timerTime = 2000; // timer delay in ms this makes 2 seconds
 	private int numberOfCards = 10;
+	private int bothDrawn=0;
 	// to check for pairs
 	private boolean pairChecker = false;
 	private int[] pairNumber;
@@ -313,7 +314,7 @@ public class UserInterface extends JPanel {
 	public void flipImage(int buttonNr) {
 
 		CardButton[buttonNr].setIcon(CardImage[buttonNr]);
-		
+		bothDrawn++;
 		repaint();
 		//Every-other time will it flip back
 		if (pairChecker == true) {
@@ -368,6 +369,13 @@ public class UserInterface extends JPanel {
 
 		timerFaildLogin.start();
 	}
+	
+	public boolean checkIfBothDrawn(){
+		if(bothDrawn>1)
+			return true;
+		else
+			return false;
+	}
 
 	private class TimerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -375,6 +383,7 @@ public class UserInterface extends JPanel {
 			CardButton[pairNumber[0]].setIcon(CardImage[10]);
 			CardButton[pairNumber[1]].setIcon(CardImage[10]);
 			repaint();
+			bothDrawn=0;
 		}
 	}
 
@@ -389,7 +398,7 @@ public class UserInterface extends JPanel {
 
 
 			CardButton[buttonNr].setIcon(CardImage[buttonNr]);
-			
+			bothDrawn=0;
 			repaint();
 			//Every-other time will it flip back
 			if (pairChecker == true) {

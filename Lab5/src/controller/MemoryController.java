@@ -94,7 +94,8 @@ public class MemoryController {
 			for (int i = 0; i < numberOfCards; i++) {
 				
 				if (cl.getActionCommand().equals("button" + i)) {
-					
+					if(theView.checkIfBothDrawn()==true)
+						break;
 					
 					if (everyOther == true) {
 						firstCard=i;

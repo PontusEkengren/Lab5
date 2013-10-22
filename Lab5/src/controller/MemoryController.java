@@ -11,6 +11,7 @@ import model.Card;
 import model.Memory;
 import model.User;
 
+
 public class MemoryController {
 
 	private int numberOfCards = 30;
@@ -41,9 +42,18 @@ public class MemoryController {
 		this.theView.addRegisterButtonListener2(new RegisterButtonListener2());
 
 	}
+	/**
+	 * Sets the new highscore
+	 * @param id
+	 * @param highscore
+	 */
 	public void setNewHighScore(int id, int highscore){
 		this.theModel.getUsers().get(id).setHighScore(highscore);
 	}
+	/**
+	 * Takes the new scrabeled order from Memory and tells the order to UI
+	 * @param newCardOrderList
+	 */
 	public void setNewImageOrder(ArrayList<Card> newCardOrderList){
 		newOrderArray= new int[10];
 
@@ -58,9 +68,20 @@ public class MemoryController {
 		//
 
 	}
+	/**
+	 * This is the Id of the user whom is currently playing the game
+	 * @param id
+	 */
 	public void getActiveId(int id){
 		activeId = id-1;
 	}
+	/**
+	 * Checks if the name of the user you want to login as exists in the user file
+	 * if not found loginFaild
+	 * @param name
+	 * @param users
+	 * @throws IOException
+	 */
 	public void checkLogin(String name, ArrayList<User> users)
 			throws IOException {
 		boolean found = false;
@@ -91,7 +112,7 @@ public class MemoryController {
 			this.theView.loggedInFaild();
 		}
 	}
-
+//Used for LoginButton
 	private class LoginListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent ll) {
@@ -103,7 +124,7 @@ public class MemoryController {
 			}
 		}
 	}
-
+//Used for all the Cards(buttons)
 	private class CardListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent cl) {
@@ -183,7 +204,7 @@ public class MemoryController {
 			}
 		}
 	}
-
+//Listen for exits
 	private class ExitListener implements ActionListener {
 
 		@Override
@@ -193,7 +214,7 @@ public class MemoryController {
 		}
 
 	}
-
+//Listen for rebutton
 	private class RegisterListener implements ActionListener {
 
 		@Override
@@ -203,7 +224,7 @@ public class MemoryController {
 		}
 
 	}
-
+//Listen for Highscore
 	private class HighScoreListener implements ActionListener {
 
 		@Override
@@ -214,6 +235,7 @@ public class MemoryController {
 		}
 
 	}
+	//Listen for reset(not yet implemented)
 	private class ResetListener implements ActionListener{
 
 		@Override
@@ -232,7 +254,7 @@ public class MemoryController {
 		}
 		
 	}
-
+//Listen for register
 	private class RegisterButtonListener implements ActionListener {
 
 		@Override
@@ -255,7 +277,7 @@ public class MemoryController {
 			}
 		}
 	}
-
+//Listen for register
 	private class RegisterButtonListener2 implements ActionListener {
 
 		@Override

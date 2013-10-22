@@ -15,20 +15,32 @@ public class Card implements Serializable{
 		//this.icon[0]=standardCard;
 		//this.icon[1]=image;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getId(){
 		return id;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getPairId(){
 		return pairId;
 	}
-	
+	/**
+	 * 
+	 * @param found
+	 */
 	public void setFound(boolean found){
 		this.found=found;
 	}
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean getFound(){
 		return found;
 	}

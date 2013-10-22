@@ -21,11 +21,22 @@ public class Memory {
 	public Memory() throws IOException, ClassNotFoundException {
 		reset();
 	}
+	/**
+	 * Just addes the user as requested with the parms told...
+	 * @param id
+	 * @param username
+	 * @param score
+	 */
 	public void addUser(int id, String username, int score){
 		User adding = new User(id, username, score);
 		users.add(adding);
 	}
-
+	/**
+	 * This savefile method saves the Users in the same catalog as the Jar file
+	 * 
+	 * @param saveFile
+	 * @throws IOException
+	 */
 	public void save(String saveFile) throws IOException {
 		//ClassLoader cl = this.getClass().getClassLoader();
 		ObjectOutputStream oos = null;
@@ -49,6 +60,12 @@ public class Memory {
 	}
 
 	@SuppressWarnings("unchecked")
+	/**
+	 * This load file expects the file to be in the same catalog as the jar-file
+	 * @param loadFile
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public void load(String loadFile) throws ClassNotFoundException, IOException {
 		//ClassLoader cl = this.getClass().getClassLoader();
 		ObjectInputStream ois = null;
@@ -67,7 +84,12 @@ public class Memory {
 			throw e;
 		}
 	}
-
+	/**
+	 * resets and restarts the game
+	 * this is not yet implemented
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void reset() throws IOException, ClassNotFoundException {
 		// Reset everything but the score
 		load("test.lst");
@@ -104,7 +126,12 @@ public class Memory {
 		
 	}
 
-
+	/**
+	 * Check if both of the cards are in pair with eachother
+	 * @param card1
+	 * @param card2
+	 * @return
+	 */
 	public boolean checkIfPair(Card card1,Card card2) {
 
 		if(card1.getPairId()==card2.getPairId()){
@@ -117,7 +144,11 @@ public class Memory {
 		}
 		
 	}
-
+	/**
+	 * This method checks if the game is completed by checking if all the cards are turned
+	 * the last two cards in memory will always be a pair
+	 * @return
+	 */
 	public boolean checkIfDone() {
 		int numberOfFound=0;
 		for (int i = 0; i < (cards.size()); i++) {
@@ -130,6 +161,12 @@ public class Memory {
 		return false;
 		
 	}
+	/**
+	 * Checks if the username already exists in the loaded data from the files
+	 * @param name
+	 * @return 
+	 * true or false
+	 */
 	public boolean checkIfDuplicate(String name){
 		int hit = 0;
 		for(int i=0; i< users.size(); i++){
@@ -139,16 +176,24 @@ public class Memory {
 		}
 		return false;
 	}
-
+	/**
+	 * 
+	 */
 	public void saveUserInfo() {
 
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<User> getUsers() {
 		return users;
 	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Card> getCards() { // I know im sending the acutal array of cards and not a copy.. thats the point
 		return cards;
 	}
@@ -157,11 +202,16 @@ public class Memory {
 
 	}
 
-	
+	/**
+	 * 
+	 */
 	public void shuffleCards(){
 		Collections.shuffle(cards);
 	}
-	
+	/**
+	 * returns the new card order when shuffle this is needed
+	 * @return
+	 */
 	public ArrayList<Card> getNewCardOrder(){
 		return newOrder;
 	}
@@ -170,7 +220,11 @@ public class Memory {
 		users.get(id).addScore();
 
 	}*/
-
+	
+	/**
+	 * what happens when we login
+	 * @param inputText
+	 */
 	public void loginButton(String inputText) {
 
 		Iterator<User> itr = users.iterator();
